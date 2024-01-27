@@ -75,17 +75,11 @@ button {
     border: none;
     border-radius: 5px;
     outline: none;
+  background-color: #4A4F55; /* Gray with a slight blue tint */
+  color: #D4D4D4;
 }
 
-#saveButton {
-    background-color: #28a745; /* Green color for Save button */
-    color: #fff;
-}
 
-#loadButton {
-    background-color: #007BFF; /* Blue color for Load button */
-    color: #fff;
-}
 
 button:hover {
     opacity: 0.8; /* Slightly reduce opacity on hover for a subtle effect */
@@ -104,13 +98,34 @@ button:hover {
 
 select {
     padding: 0.5em;
-    border: 1px solid gray; 
+    border: 1px solid #4A4F55; 
     border-radius: 5px;
-    background-color: gray;
-    color: #000;
+    background-color: #4A4F55;
+    color: #D4D4D4;
     cursor: pointer;
 }
 
 select:hover {
-    border-color: black; 
+  opacity: 0.8;
 }
+
+/* Add these rules to your existing style.css file */
+.markdown-body pre,
+.markdown-body code {
+    background-color: #1E1E1E; /* Same as your editor background */
+    color: #D4D4D4; /* Same as your editor text color */
+}
+
+/* You might also want to set a different color for inline code */
+.markdown-body p code {
+    background-color: #373737; /* Slightly lighter background for contrast */
+    padding: .2em .4em;
+    border-radius: 3px;
+}
+
+/* And adjust the border styling for blocks */
+.markdown-body pre {
+    border: 1px solid #373737;
+    padding: 1em;
+}
+

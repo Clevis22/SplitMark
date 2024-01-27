@@ -4,7 +4,8 @@ var preview = document.getElementById('preview');
 
 // Function to change font size
 function changeFontSize(fontSize) {
-    preview.style.fontSize = fontSize;
+    editor.style.fontSize = fontSize; // Apply font size to the editor pane.
+    preview.style.fontSize = fontSize; // Apply font size to the preview pane.
 }
 
 editor.addEventListener('input', function () {
