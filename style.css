@@ -1,0 +1,116 @@
+  body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      background-color: #1E1E1E;
+      color: #D4D4D4;
+  }
+
+  .editor-preview {
+      display: flex;
+      height: calc(100% - 3em);
+  }
+
+  textarea, .preview {
+      box-sizing: border-box;
+      width: 50%;
+      padding: 1em;
+      border: none;
+      height: 100%;
+      outline: none;
+      resize: none;
+      background-color: #1E1E1E;
+      color: #D4D4D4;
+  }
+
+  .preview {
+      overflow: auto;
+  }
+
+  .markdown-body {
+      min-width: 200px;
+  }
+
+  .gutter {
+      background-color: #505050;
+      background-repeat: no-repeat;
+      background-position: 50%;
+  }
+
+  .menu {
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: space-between;
+      padding: 1em 1em;
+      background-color: #1E1E1E;
+      color: #D4D4D4;
+  }
+
+  /* Style for the font size selector */
+  select {
+      padding: 0.5em;
+  }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1E1E1E; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #D4D4D4; 
+}
+
+button {
+    padding: 0.5em 1em;
+    margin: 0 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+#saveButton {
+    background-color: #28a745; /* Green color for Save button */
+    color: #fff;
+}
+
+#loadButton {
+    background-color: #007BFF; /* Blue color for Load button */
+    color: #fff;
+}
+
+button:hover {
+    opacity: 0.8; /* Slightly reduce opacity on hover for a subtle effect */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #007BFF; /* Blue color for links */
+    margin-right: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.menu a:hover {
+    color: #0056b3; /* Darker blue color on hover */
+}
+
+select {
+    padding: 0.5em;
+    border: 1px solid gray; 
+    border-radius: 5px;
+    background-color: gray;
+    color: #000;
+    cursor: pointer;
+}
+
+select:hover {
+    border-color: black; 
+}
