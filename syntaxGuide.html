@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Guide | SplitMark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu">
+        <div>
+          <button onclick="window.open('https://github.com/Clevis22/SplitMark/blob/main/README.md', '_blank')">About</button>
+          <button onclick="window.location.href='index.html'">Editor</button>
+          <button id="saveButton">Save</button>
+          <button id="loadButton">Load</button>
+        </div>
+        <div>
+            <label for="fontSize">Font Size:</label>
+            <select id="fontSize" onchange="changeFontSize(this.value)">
+                <option value="12px">12px</option>
+                <option value="16px">16px</option>
+                <option value="20px">20px</option>
+                <option value="24px">24px</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="editor-preview">
+        <textarea id="editor"></textarea>
+        <div id="preview" class="preview markdown-body"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.2/split.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+
+    <input type="file" id="fileInput" style="display: none;" />
+    <script src="script.js"></script>
+    <script>
+        // Syntax guide text placeholder
+        const syntaxGuide = `# Markdown Syntax Guide
+
+Here you'll find a basic reference to the Markdown syntax that SplitMark supports.
+
+## Headers
+
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+
+## Emphasis
+
+*Italic text* or _Italic text_
+**Bold text** or __Bold text__
+**_Combined emphasis_**
+
+## Lists
+
+- Unordered list item
+- Unordered list item
+- Unordered list item
+
+1. Ordered list item
+2. Ordered list item
+3. Ordered list item
+
+## Links
+
+[Replit](https://www.replit.com/)
+
+## Images
+
+![alt text](https://replit.com/public/images/logo.svg "Replit Logo")
+
+## Code
+
+Inline \`code\` has \`back-ticks around\` it.
+
+\`\`\`
+# Code block
+print('Hello, world!')
+\`\`\`
+
+## Blockquotes
+
+> Blockquote text below the paragraph.
+
+## Tables
+
+| Header 1 | Header 2 | Header 3 |
+| -------- | -------- | -------- |
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |
+| Cell 7   | Cell 8   | Cell 9   |
+
+For a more detailed guide, please visit [Markdown Guide](https://www.markdownguide.org).
+
+`;
+
+        // Set the editor's content to the syntax guide on load
+        document.addEventListener('DOMContentLoaded', function(event) {
+            editor.value = syntaxGuide;
+            preview.innerHTML = converter.makeHtml(syntaxGuide);
+        });
+
+      // Add this inside the existing script.js or as a separate script
+      function loadSyntaxGuide() {
+          const syntaxGuide = `# Markdown Syntax Guide
+          ...
+          `; // The contents of the syntax guide go here
+
+          editor.value = syntaxGuide; // Set the initial content of the editor to the syntax guide
+          preview.innerHTML = converter.makeHtml(syntaxGuide); // Set the initial content of the preview
+      }
+
+      loadSyntaxGuide(); // Call this function at the end of script.js to load the guide on page load
+
+    </script>
+</body>
+</html>

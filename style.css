@@ -75,25 +75,25 @@ button {
     border: none;
     border-radius: 5px;
     outline: none;
-  background-color: #4A4F55; /* Gray with a slight blue tint */
+  background-color: #4A4F55;
   color: #D4D4D4;
 }
 
 
 
 button:hover {
-    opacity: 0.8; /* Slightly reduce opacity on hover for a subtle effect */
+    opacity: 0.8;
 }
 
 .menu a {
     text-decoration: none;
-    color: #007BFF; /* Blue color for links */
+    color: #007BFF;
     margin-right: 15px;
     transition: color 0.3s ease-in-out;
 }
 
 .menu a:hover {
-    color: #0056b3; /* Darker blue color on hover */
+    color: #0056b3; 
 }
 
 select {
@@ -109,23 +109,51 @@ select:hover {
   opacity: 0.8;
 }
 
-/* Add these rules to your existing style.css file */
+
 .markdown-body pre,
 .markdown-body code {
-    background-color: #1E1E1E; /* Same as your editor background */
-    color: #D4D4D4; /* Same as your editor text color */
+    background-color: #1E1E1E;
+    color: #D4D4D4; 
 }
 
-/* You might also want to set a different color for inline code */
+
 .markdown-body p code {
-    background-color: #373737; /* Slightly lighter background for contrast */
+    background-color: #373737;
     padding: .2em .4em;
     border-radius: 3px;
 }
 
-/* And adjust the border styling for blocks */
+
 .markdown-body pre {
     border: 1px solid #373737;
     padding: 1em;
 }
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 0.5em;
+  border: 1px solid #4A4F55;
+}
+
+.markdown-body th {
+  background-color: #373737;
+  color: #D4D4D4; 
+}
+
+.markdown-body tr:nth-child(even) {
+  background-color: #2E2E2E;
+}
+
+.markdown-body tbody tr:first-child th,
+.markdown-body tbody tr:nth-child(n+2),
+.markdown-body tbody tr:first-child td {
+  background-color: #373737;
+}
+
 
