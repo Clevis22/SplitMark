@@ -156,4 +156,26 @@ select:hover {
   background-color: #373737;
 }
 
+/* New CSS to add a custom checkmark */
+.checklist-item input[type="checkbox"] {
+  appearance: none; /* Remove default appearance */
+  background-color: #4A4F55; /* White background */
+  margin-right: 0.5em;
+  /* Box dimensions */
+  width: 1em;
+  height: 1em;
+}
+
+/* Add a custom checkmark for checked items */
+.checklist-item input[type="checkbox"]:checked {
+  background-color: green; /* Green background when checked */
+}
+
+/* Optional: Add a fancy checkmark using a Unicode character */
+.checklist-item input[type="checkbox"]:checked:after {
+  color: #4A4F55; /* White checkmark */
+  position: absolute;
+  left: 4px;
+  top: -2px;
+}
 

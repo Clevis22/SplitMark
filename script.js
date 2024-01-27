@@ -32,6 +32,25 @@ function loadContent() {
 // Call loadContent on page reload
 document.addEventListener('DOMContentLoaded', loadContent);
 
+// Extension to handle checklists in Markdown
+showdown.extension('showdownChecklist', function() {
+  return [{
+    type: 'lang',
+    filter: function(text) {
+      return text
+        // Replace "- [ ]" with an unchecked checkbox
+        .replace(/-\s\[\s\]\s(.+)/g, '<li class="checklist-item"><input type="checkbox" disabled> $1</li>')
+        // Replace "- [x]" or "- [X]" with a checked checkbox
+        .replace(/-\s\[\x\]\s(.+)/ig, '<li class="checklist-item"><input type="checkbox" checked disabled> $1</li>');
+    }
+  }];
+});
+// Adding the extension to the converter
+var converter = new showdown.Converter({
+  tables: true,
+  extensions: ['showdownChecklist'] // Add our new extension here
+});
+
 // Function to change font size
 function changeFontSize(fontSize) {
     editor.style.fontSize = fontSize;
@@ -89,3 +108,31 @@ editor.addEventListener('scroll', function () {
     var scrollPercentage = editor.scrollTop / editorScrollHeight;
     preview.scrollTop = previewScrollHeight * scrollPercentage;
 });
+
+
+// function to export as a pdf
+async function exportAsPdf() {
+  const previewElement = document.getElementById('preview');
+  const { jsPDF } = window.jspdf;
+  // A4 dimensions: [210mm, 297mm]
+  const pdf = new jsPDF({
+    unit: 'mm',
+    format: 'a4'
+  });
+  pdf.html(previewElement, {
+    callback: function (pdf) {
+      pdf.save('document.pdf');
+    },
+    margin: [0, 0, 0, 0],  // Top, left, bottom, right margin
+    html2canvas: {
+      scale: .5,  // Find a suitable scale that fits the A4 size
+      backgroundColor: "#1E1E1E"  // Preserve the default dark mode background color
+    },
+    //x: 10,
+    //y: 10,
+    windowWidth: previewElement.scrollWidth
+  });
+}
+
+// Add event listener for the PDF export button
+document.getElementById('exportPdfButton').addEventListener('click', exportAsPdf);

@@ -16,3 +16,14 @@ Enter your Github-flavored markdown on the left and see the live preview of the 
 * Local Files: Upload and download from the local disk.
 
 * Customizable editor font size: Change the editor font size for better readability.
+
+## To Do
+
+* Improve exporting as PDF formatting
+
+* Make a better mobile experience
+
+* Add keyboard shortcuts
+
+* Add favicon
+

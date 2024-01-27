@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <title>SplitMark</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
-<link rel="stylesheet" href="style.css">
-
-</head>
-<body>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
     <div class="menu">
-        <div>
-          <button onclick="window.open('https://github.com/Clevis22/SplitMark/blob/main/README.md', '_blank')">About</button>
-          <button onclick="window.open('syntaxGuide.html', '_blank')">Syntax Guide</button>
-          <button id="saveButton">Save</button>
-          <button id="loadButton">Load</button>
-        </div>
-        <!-- Font size selector -->
-        <div>
-            <label for="fontSize">Font Size:</label>
-            <select id="fontSize" onchange="changeFontSize(this.value)">
-                <option value="12px">12px</option>
-                <option value="16px">16px</option>
-                <option value="20px">20px</option>
-                <option value="24px">24px</option>
-            </select>
-        </div>
+      <div>
+        <button onclick="window.open('https://github.com/Clevis22/SplitMark/blob/main/README.md', '_blank')">About</button>
+        <button onclick="window.open('syntaxGuide.html', '_blank')">Syntax Guide</button>
+        <button id="saveButton">Save</button>
+        <button id="loadButton">Load</button>
+      </div>
+      <!-- Font size selector -->
+      <div>
+        <button id="exportPdfButton">Export as PDF</button>
+        <label for="fontSize">Font Size:</label>
+        <select id="fontSize" onchange="changeFontSize(this.value)">
+          <option value="12px">12px</option>
+          <option value="16px">16px</option>
+          <option value="20px">20px</option>
+          <option value="24px">24px</option>
+        </select>
+      </div>
     </div>
-
     <div class="editor-preview">
-        <textarea id="editor"></textarea>
-        <div id="preview" class="preview markdown-body"></div>
+      <textarea id="editor"></textarea>
+      <div id="preview" class="preview markdown-body"></div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.2/split.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
-
-  <input type="file" id="fileInput" style="display: none;" />
-<script src="script.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <input type="file" id="fileInput" style="display: none;" />
+    <script src="script.js"></script>
+  </body>
 </html>
