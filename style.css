@@ -66,7 +66,7 @@ select {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #D4D4D4;
+    background: #8a8888;
 }
 
 button {
@@ -205,7 +205,7 @@ select:hover {
     border: 1px solid #E0E0E0; /* Light mode block code border */
 }
 .light-mode ::-webkit-scrollbar-thumb {
-    background: #000000; /* Light mode scrollbar handle */
+    background: #8a8888; /* Light mode scrollbar handle */
 }
 
 .light-mode ::-webkit-scrollbar-track {
