@@ -30,6 +30,22 @@ function toggleItalics() {
     }
 }
 
+function toggleStrikethrough() {
+    var start = editor.selectionStart;
+    var end = editor.selectionEnd;
+    var selectedText = editor.value.substring(start, end);
+    if (start === end) {
+        // No selection, place strikethrough syntax at cursor
+        editor.value = editor.value.substring(0, start) + '~~~~' + editor.value.substring(end);
+        editor.selectionStart = editor.selectionEnd = start + 2;
+    } else {
+        // Wrap selected text with strikethrough syntax
+        editor.value = editor.value.substring(0, start) + '~~' + selectedText + '~~' + editor.value.substring(end);
+        editor.selectionStart = start + 2;
+        editor.selectionEnd = end + 2;
+    }
+}
+
 // Main event listener for keyboard shortcuts
 document.addEventListener('keydown', function(event) {
     if (event.ctrlKey || event.metaKey) {
@@ -42,7 +58,10 @@ document.addEventListener('keydown', function(event) {
                 event.preventDefault();
                 toggleItalics();
                 break;
-                // You can add more cases for additional shortcuts
+            case 's':
+                event.preventDefault();
+                toggleStrikethrough();
+                break;
         }
 
         // Update preview and autosave after applying the formatting

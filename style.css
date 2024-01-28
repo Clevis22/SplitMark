@@ -159,7 +159,6 @@ select:hover {
 
 /* New CSS to add a custom checkmark */
 .checklist-item input[type="checkbox"] {
-    appearance: none;
     /* Remove default appearance */
     background-color: #4A4F55;
     /* White background */
@@ -190,10 +189,13 @@ select:hover {
 }
 .light-mode .preview,
 .light-mode .markdown-body pre,
-.light-mode .markdown-body code,
-.light-mode .gutter {
+.light-mode .markdown-body code {
     background-color: #FFFFFF; /* Light mode bg */
     color: #333333; /* Light mode text color */
+}
+
+.light-mode .gutter{
+    background-color: #B0B0B0;
 }
 
 .light-mode .markdown-body p code {
@@ -203,8 +205,13 @@ select:hover {
     border: 1px solid #E0E0E0; /* Light mode block code border */
 }
 .light-mode ::-webkit-scrollbar-thumb {
-    background: #B0B0B0; /* Light mode scrollbar handle */
+    background: #000000; /* Light mode scrollbar handle */
 }
+
+.light-mode ::-webkit-scrollbar-track {
+    background: white;
+}
+
 .light-mode button,
 .light-mode select {
     background-color: #E6E6E6; /* Light mode button bg */

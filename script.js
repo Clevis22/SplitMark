@@ -1,5 +1,7 @@
 var converter = new showdown.Converter({
-  tables: true
+  tables: true,
+  strikethrough: true,
+  emoji: true
 });
 var editor = document.getElementById('editor');
 var preview = document.getElementById('preview');
@@ -50,6 +52,8 @@ showdown.extension('showdownChecklist', function() {
 // Adding the extension to the converter
 var converter = new showdown.Converter({
   tables: true,
+  strikethrough: true,
+  emoji: true,
   extensions: ['showdownChecklist'] // Add our new extension here
 });
 

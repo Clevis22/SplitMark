@@ -12,6 +12,8 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Control I: Italicize text
 
+* Control S: Strikethrough
+
 * Control Z: Undo
 
 * Control Y: Redo
@@ -24,6 +26,8 @@ Enter your markdown on the left and see the live preview of the rendered output 
 * Privacy: No tracking to be found
 
 * Simple: Extremely simple and easy to use
+
+* Emoji Support: [Support for emojis through Showdown](https://github.com/showdownjs/showdown/wiki/Emojis#introduction)
 
 * Local Files: Upload and download from the local disk.
 

@@ -16,15 +16,15 @@
     <div class="menu">
       <div>
         <button onclick="window.open('https://github.com/Clevis22/SplitMark/blob/main/README.md', '_blank')">About</button>
-        <button onclick="window.open('syntaxGuide.html', '_blank')">Syntax Guide</button>
-        <button class="toggle-mode" onclick="toggleLightMode()">Toggle Light/Dark Mode</button>
+        <button onclick="window.open('https://github.com/showdownjs/showdown/wiki/Showdown\'s-Markdown-syntax', '_blank')">Syntax Guide</button>
+        <button class="toggle-mode" onclick="toggleLightMode()">Toggle Theme</button>
         <button id="saveButton">Save</button>
         <button id="loadButton">Load</button>
       </div>
       <!-- Font size selector -->
       <div>
         <button id="exportPdfButton">Export as PDF</button>
-        <label for="fontSize">Font Size:</label>
+        <label for="fontSize"></label>
         <select id="fontSize" onchange="changeFontSize(this.value)">
           <option value="12px">12px</option>
           <option value="16px">16px</option>
