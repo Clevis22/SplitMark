@@ -144,3 +144,34 @@ async function exportAsPdf() {
 
 // Add event listener for the PDF export button
 document.getElementById('exportPdfButton').addEventListener('click', exportAsPdf);
+
+// Updated function to toggle light/dark mode for the entire page
+function toggleLightMode() {
+  const bodyClassList = document.body.classList;
+  const isLightMode = bodyClassList.toggle('light-mode');
+
+  // Save the current mode to localStorage
+  localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+
+  // Update styling of elements that depend on the theme
+  updateThemeElements(isLightMode);
+}
+
+function updateThemeElements(isLightMode) {
+  const toggleElements = document.querySelectorAll('.toggle-mode, .menu, .editor-preview, .preview, .markdown-body');
+  toggleElements.forEach(element => {
+    if (isLightMode) {
+      element.classList.add('light-mode');
+    } else {
+      element.classList.remove('light-mode');
+    }
+  });
+}
+
+// Apply the correct mode from localStorage when the document loads
+document.addEventListener('DOMContentLoaded', function() {
+  const isLightMode = localStorage.getItem('theme') === 'light';
+  document.body.classList.toggle('light-mode', isLightMode);
+  updateThemeElements(isLightMode);
+});
+

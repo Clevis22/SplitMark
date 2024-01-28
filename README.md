@@ -4,13 +4,17 @@ SplitMark is a simple split screen markdown editor using split.js and showdown.
 
 ## Usage
 To use SplitMark, navigate to the github pages deployment or download the files to use locally.
-Enter your Github-flavored markdown on the left and see the live preview of the rendered output on the right.
+Enter your markdown on the left and see the live preview of the rendered output on the right. Click and drag the gutter in the center to resize the views.
 
 ## Keybord Shortcuts
 
-Control B: Make text bold
+* Control B: Make text bold
 
-Control I: Italicize text
+* Control I: Italicize text
+
+* Control Z: Undo
+
+* Control Y: Redo
 
 ## Key Features 
 * Speed: SplitMark is extreamly lightweight and fast.
@@ -34,3 +38,15 @@ Control I: Italicize text
 * Make a better mobile experience
 
 * Add more keyboard shortcuts
+
+* Improve styling
+
+## Dependencies
+* [split.js](https://github.com/splitrb/split.js?files=1)
+* [html2canvas](https://github.com/niklasvh/html2canvas)
+* [Showdown](https://showdownjs.com/)
+* [jsPDF](https://github.com/parallax/jsPDF)
+* [GitHub Markdown CSS](https://github.com/sindresorhus/github-markdown-css)
+
+## Socials
+[X (Twitter)](https://twitter.com/splitmark1)

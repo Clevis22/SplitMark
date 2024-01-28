@@ -32,6 +32,7 @@ textarea,
 
 .markdown-body {
     min-width: 200px;
+    color: #D4D4D4;
 }
 
 .gutter {
@@ -41,7 +42,6 @@ textarea,
 }
 
 .menu {
-    background-color: #f8f9fa;
     display: flex;
     justify-content: space-between;
     padding: 1em 1em;
@@ -182,4 +182,73 @@ select:hover {
     position: absolute;
     left: 4px;
     top: -2px;
+}
+
+.light-mode {
+    background-color: #FFFFFF; /* Light mode bg */
+    color: #333333; /* Light mode text color */
+}
+.light-mode .preview,
+.light-mode .markdown-body pre,
+.light-mode .markdown-body code,
+.light-mode .gutter {
+    background-color: #FFFFFF; /* Light mode bg */
+    color: #333333; /* Light mode text color */
+}
+
+.light-mode .markdown-body p code {
+    background-color: #E0E0E0; /* Light mode inline code bg */
+}
+.light-mode .markdown-body pre {
+    border: 1px solid #E0E0E0; /* Light mode block code border */
+}
+.light-mode ::-webkit-scrollbar-thumb {
+    background: #B0B0B0; /* Light mode scrollbar handle */
+}
+.light-mode button,
+.light-mode select {
+    background-color: #E6E6E6; /* Light mode button bg */
+    color: #333; /* Light mode button text */
+}
+/* Toggle Button for light/dark mode */
+.toggle-mode {
+    padding: 0.5em 1em;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #4A4F55; /* Dark mode bg */
+    color: #D4D4D4; /* Dark mode text */
+    z-index: 1000; /* Make sure the button is above all other content */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for mode change */
+}
+.light-mode .toggle-mode {
+    background-color: #E6E6E6; /* Light mode button bg */
+    color: #333; /* Light mode button text */
+}
+.toggle-mode:hover {
+    opacity: 0.8;
+}
+
+.light-mode .markdown-body table th,
+.light-mode .markdown-body table tr:nth-child(even) {
+    background-color: #F2F2F2; /* Light mode shaded bg */
+    color:black;
+}
+
+.light-mode .markdown-body table td,
+.light-mode .markdown-body table th {
+    border: 1px solid #CCC; /* Light mode table border */
+}
+
+.light-mode .markdown-body table tr:nth-child(odd) {
+    background-color: #FFFFFF; /* Light mode table row for contrast */
+}
+
+.light-mode .markdown-body tbody tr:first-child th,
+.light-mode .markdown-body tbody tr:nth-child(n+2),
+.light-mode .markdown-body tbody tr:first-child td {
+    background-color: #EEE; /* Light mode table header and first column */
 }

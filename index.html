@@ -17,6 +17,7 @@
       <div>
         <button onclick="window.open('https://github.com/Clevis22/SplitMark/blob/main/README.md', '_blank')">About</button>
         <button onclick="window.open('syntaxGuide.html', '_blank')">Syntax Guide</button>
+        <button class="toggle-mode" onclick="toggleLightMode()">Toggle Light/Dark Mode</button>
         <button id="saveButton">Save</button>
         <button id="loadButton">Load</button>
       </div>
@@ -33,13 +34,13 @@
       </div>
     </div>
     <div class="editor-preview">
-      <textarea id="editor"></textarea>
+      <textarea id="editor" class="markdown-body"></textarea>
       <div id="preview" class="preview markdown-body"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.2/split.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <input type="file" id="fileInput" style="display: none;" />
     <script src="script.js"></script>
     <script src="shortcuts.js"></script>
