@@ -1,71 +1,72 @@
-  body {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-      background-color: #1E1E1E;
-      color: #D4D4D4;
-  }
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+}
 
-  .editor-preview {
-      display: flex;
-      height: calc(100% - 3em);
-  }
+.editor-preview {
+    display: flex;
+    height: calc(100% - 3em);
+}
 
-  textarea, .preview {
-      box-sizing: border-box;
-      width: 50%;
-      padding: 1em;
-      border: none;
-      height: 100%;
-      outline: none;
-      resize: none;
-      background-color: #1E1E1E;
-      color: #D4D4D4;
-  }
+textarea,
+.preview {
+    box-sizing: border-box;
+    width: 50%;
+    padding: 1em;
+    border: none;
+    height: 100%;
+    outline: none;
+    resize: none;
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+}
 
-  .preview {
-      overflow: auto;
-  }
+.preview {
+    overflow: auto;
+}
 
-  .markdown-body {
-      min-width: 200px;
-  }
+.markdown-body {
+    min-width: 200px;
+}
 
-  .gutter {
-      background-color: #505050;
-      background-repeat: no-repeat;
-      background-position: 50%;
-  }
+.gutter {
+    background-color: #505050;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
 
-  .menu {
-      background-color: #f8f9fa;
-      display: flex;
-      justify-content: space-between;
-      padding: 1em 1em;
-      background-color: #1E1E1E;
-      color: #D4D4D4;
-  }
+.menu {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 1em;
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+}
 
-  /* Style for the font size selector */
-  select {
-      padding: 0.5em;
-  }
+/* Style for the font size selector */
+select {
+    padding: 0.5em;
+}
 
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+    width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #1E1E1E; 
+    background: #1E1E1E;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D4; 
+    background: #D4D4D4;
 }
 
 button {
@@ -75,8 +76,8 @@ button {
     border: none;
     border-radius: 5px;
     outline: none;
-  background-color: #4A4F55;
-  color: #D4D4D4;
+    background-color: #4A4F55;
+    color: #D4D4D4;
 }
 
 
@@ -93,12 +94,12 @@ button:hover {
 }
 
 .menu a:hover {
-    color: #0056b3; 
+    color: #0056b3;
 }
 
 select {
     padding: 0.5em;
-    border: 1px solid #4A4F55; 
+    border: 1px solid #4A4F55;
     border-radius: 5px;
     background-color: #4A4F55;
     color: #D4D4D4;
@@ -106,14 +107,14 @@ select {
 }
 
 select:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 
 .markdown-body pre,
 .markdown-body code {
     background-color: #1E1E1E;
-    color: #D4D4D4; 
+    color: #D4D4D4;
 }
 
 
@@ -130,52 +131,55 @@ select:hover {
 }
 
 .markdown-body table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1em 0;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
 }
 
 .markdown-body th,
 .markdown-body td {
-  padding: 0.5em;
-  border: 1px solid #4A4F55;
+    padding: 0.5em;
+    border: 1px solid #4A4F55;
 }
 
 .markdown-body th {
-  background-color: #373737;
-  color: #D4D4D4; 
+    background-color: #373737;
+    color: #D4D4D4;
 }
 
 .markdown-body tr:nth-child(even) {
-  background-color: #2E2E2E;
+    background-color: #2E2E2E;
 }
 
 .markdown-body tbody tr:first-child th,
 .markdown-body tbody tr:nth-child(n+2),
 .markdown-body tbody tr:first-child td {
-  background-color: #373737;
+    background-color: #373737;
 }
 
 /* New CSS to add a custom checkmark */
 .checklist-item input[type="checkbox"] {
-  appearance: none; /* Remove default appearance */
-  background-color: #4A4F55; /* White background */
-  margin-right: 0.5em;
-  /* Box dimensions */
-  width: 1em;
-  height: 1em;
+    appearance: none;
+    /* Remove default appearance */
+    background-color: #4A4F55;
+    /* White background */
+    margin-right: 0.5em;
+    /* Box dimensions */
+    width: 1em;
+    height: 1em;
 }
 
 /* Add a custom checkmark for checked items */
 .checklist-item input[type="checkbox"]:checked {
-  background-color: green; /* Green background when checked */
+    background-color: green;
+    /* Green background when checked */
 }
 
 /* Optional: Add a fancy checkmark using a Unicode character */
 .checklist-item input[type="checkbox"]:checked:after {
-  color: #4A4F55; /* White checkmark */
-  position: absolute;
-  left: 4px;
-  top: -2px;
+    color: #4A4F55;
+    /* White checkmark */
+    position: absolute;
+    left: 4px;
+    top: -2px;
 }
-
