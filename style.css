@@ -216,6 +216,7 @@ select:hover {
 .light-mode select {
     background-color: #E6E6E6; /* Light mode button bg */
     color: #333; /* Light mode button text */
+    border: none;
 }
 /* Toggle Button for light/dark mode */
 .toggle-mode {

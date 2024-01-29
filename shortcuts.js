@@ -46,9 +46,27 @@ function toggleStrikethrough() {
     }
 }
 
+//Autoclosing []
+function insertSquareBrackets() {
+    var start = editor.selectionStart;
+    var end = editor.selectionEnd;
+
+    editor.value = editor.value.substring(0, start) + '[]' + editor.value.substring(end);
+    editor.selectionStart = editor.selectionEnd = start + 1;
+}
+
+//Autoclosing ()
+function insertParentheses() {
+    var start = editor.selectionStart;
+    var end = editor.selectionEnd;
+
+    editor.value = editor.value.substring(0, start) + '()' + editor.value.substring(end);
+    editor.selectionStart = editor.selectionEnd = start + 1;
+}
+
 // Main event listener for keyboard shortcuts
 document.addEventListener('keydown', function(event) {
-    if (event.ctrlKey || event.metaKey) {
+    if ((event.ctrlKey || event.metaKey) && !event.altKey) {
         switch (event.key.toLowerCase()) {
             case 'b':
                 event.preventDefault();
@@ -63,9 +81,20 @@ document.addEventListener('keydown', function(event) {
                 toggleStrikethrough();
                 break;
         }
-
-        // Update preview and autosave after applying the formatting
-        preview.innerHTML = converter.makeHtml(editor.value);
-        autosave();
     }
+    else if (!event.ctrlKey && !event.metaKey && !event.altKey) {
+        switch (event.key) {
+            case '[':
+                event.preventDefault();
+                insertSquareBrackets();
+                break;
+            case '(':
+                event.preventDefault();
+                insertParentheses();
+                break;
+        }
+    }
+    // Update preview and autosave after applying the formatting
+    preview.innerHTML = converter.makeHtml(editor.value);
+    autosave();
 });

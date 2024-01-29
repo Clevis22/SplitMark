@@ -1,6 +1,6 @@
 # SplitMark
 
-SplitMark is a simple split screen markdown editor using split.js and showdown.
+A real-time split-view markdown editor powered by Showdown and Split.js.
 
 ## Usage
 To use SplitMark, navigate to the github pages deployment or download the files to use locally.
@@ -19,7 +19,7 @@ Enter your markdown on the left and see the live preview of the rendered output 
 * Control Y: Redo
 
 ## Key Features 
-* Speed: SplitMark is extreamly lightweight and fast.
+* Speed: SplitMark is extremely lightweight and fast.
 
 * Split View: Adjustable markdown and rendered output split view
 
@@ -29,15 +29,15 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Emoji Support: [Support for emojis through Showdown](https://github.com/showdownjs/showdown/wiki/Emojis#introduction)
 
-* Local Files: Upload and download from the local disk.
+* Local Files: Upload and download from the local disk or export as HTML.
 
 * Local Storage: SplitMark automatically saves editor content between sessions.
 
 * Customizable editor font size: Change the editor font size for better readability.
 
-## To Do
+* Auto-closing brackets and parentheses
 
-* Improve exporting as PDF formatting
+## To Do
 
 * Make a better mobile experience
 
@@ -47,10 +47,8 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 ## Dependencies
 * [split.js](https://github.com/splitrb/split.js?files=1)
-* [html2canvas](https://github.com/niklasvh/html2canvas)
 * [Showdown](https://showdownjs.com/)
-* [jsPDF](https://github.com/parallax/jsPDF)
 * [GitHub Markdown CSS](https://github.com/sindresorhus/github-markdown-css)
 
 ## Socials
-[X (Twitter)](https://twitter.com/splitmark1)
+* [X (Twitter)](https://twitter.com/splitmark1)

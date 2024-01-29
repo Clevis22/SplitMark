@@ -50,7 +50,7 @@ showdown.extension('showdownChecklist', function() {
   }];
 });
 // Adding the extension to the converter
-var converter = new showdown.Converter({
+converter = new showdown.Converter({
   tables: true,
   strikethrough: true,
   emoji: true,
@@ -119,35 +119,25 @@ editor.addEventListener('scroll', function() {
   preview.scrollTop = previewScrollHeight * scrollPercentage;
 });
 
-
-// function to export as a pdf
-async function exportAsPdf() {
-  const previewElement = document.getElementById('preview');
-  const {
-      jsPDF
-  } = window.jspdf;
-  // A4 dimensions: [210mm, 297mm]
-  const pdf = new jsPDF({
-      unit: 'mm',
-      format: 'a4'
+// Function to export as HTML
+function exportAsHtml() {
+  var htmlContent = preview.innerHTML;
+  var filename = "document.html";
+  var blob = new Blob([htmlContent], {
+      type: "text/html;charset=utf-8"
   });
-  pdf.html(previewElement, {
-      callback: function(pdf) {
-          pdf.save('document.pdf');
-      },
-      margin: [0, 0, 0, 0], // Top, left, bottom, right margin
-      html2canvas: {
-          scale: .5, // Find a suitable scale that fits the A4 size
-          backgroundColor: "#1E1E1E" // Preserve the default dark mode background color
-      },
-      //x: 10,
-      //y: 10,
-      windowWidth: previewElement.scrollWidth
-  });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
-// Add event listener for the PDF export button
-document.getElementById('exportPdfButton').addEventListener('click', exportAsPdf);
+// Add event listener for the HTML export button
+document.getElementById('exportHTMLButton').addEventListener('click', exportAsHtml);
 
 // Updated function to toggle light/dark mode for the entire page
 function toggleLightMode() {
@@ -178,4 +168,3 @@ document.addEventListener('DOMContentLoaded', function() {
   document.body.classList.toggle('light-mode', isLightMode);
   updateThemeElements(isLightMode);
 });
-

@@ -23,7 +23,7 @@
       </div>
       <!-- Font size selector -->
       <div>
-        <button id="exportPdfButton">Export as PDF</button>
+        <button id="exportHTMLButton">Export as HTML</button>
         <label for="fontSize"></label>
         <select id="fontSize" onchange="changeFontSize(this.value)">
           <option value="12px">12px</option>
@@ -39,8 +39,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.2/split.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <input type="file" id="fileInput" style="display: none;" />
     <script src="script.js"></script>
     <script src="shortcuts.js"></script>
