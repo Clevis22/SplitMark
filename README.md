@@ -14,6 +14,8 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Control S: Strikethrough
 
+* Control E: Emoji
+
 * Control Z: Undo
 
 * Control Y: Redo

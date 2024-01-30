@@ -1,5 +1,4 @@
-// Define functions for keyboard shortcuts
-
+// function for bold shorcut
 function toggleBold() {
     var start = editor.selectionStart;
     var end = editor.selectionEnd;
@@ -15,6 +14,7 @@ function toggleBold() {
     }
 }
 
+// function for italics shortcut
 function toggleItalics() {
     var start = editor.selectionStart;
     var end = editor.selectionEnd;
@@ -30,6 +30,7 @@ function toggleItalics() {
     }
 }
 
+// function for strikethough shortcut
 function toggleStrikethrough() {
     var start = editor.selectionStart;
     var end = editor.selectionEnd;
@@ -46,7 +47,23 @@ function toggleStrikethrough() {
     }
 }
 
-//Autoclosing []
+// function for emoji shortcut
+function toggleEmoji() {
+    var start = editor.selectionStart;
+    var end = editor.selectionEnd;
+    var selectedText = editor.value.substring(start, end);
+
+    if (start === end) {
+        editor.value = editor.value.substring(0, start) + '::' + editor.value.substring(end);
+        editor.selectionStart = editor.selectionEnd = start + 1;
+    } else {
+        editor.value = editor.value.substring(0, start) + ':' + selectedText + ':' + editor.value.substring(end);
+        editor.selectionStart = start + 1;
+        editor.selectionEnd = end + 1;
+    }
+}
+
+// function for auto-closing []
 function insertSquareBrackets() {
     var start = editor.selectionStart;
     var end = editor.selectionEnd;
@@ -55,7 +72,7 @@ function insertSquareBrackets() {
     editor.selectionStart = editor.selectionEnd = start + 1;
 }
 
-//Autoclosing ()
+//function for auto-closing ()
 function insertParentheses() {
     var start = editor.selectionStart;
     var end = editor.selectionEnd;
@@ -79,6 +96,10 @@ document.addEventListener('keydown', function(event) {
             case 's':
                 event.preventDefault();
                 toggleStrikethrough();
+                break;
+            case 'e':
+                event.preventDefault();
+                toggleEmoji();
                 break;
         }
     }
