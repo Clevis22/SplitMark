@@ -69,6 +69,12 @@ select {
     background: #8a8888;
 }
 
+/*code scrollbar */
+pre::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
 button {
     padding: 0.5em 1em;
     margin: 0 5px;
