@@ -68,7 +68,7 @@ editor.addEventListener('input', function() {
 });
 
 Split(['#editor', '#preview'], {
-  sizes: [50, 50]
+  sizes: [50, 50],
 });
 
 // Function to save to disk
@@ -168,3 +168,19 @@ document.addEventListener('DOMContentLoaded', function() {
   document.body.classList.toggle('light-mode', isLightMode);
   updateThemeElements(isLightMode);
 });
+
+console.log(
+  `%c ________________________________________
+|  Welcome to SplitMark!                 |
+|  Check out the project on GitHub       |
+|  https://github.com/Clevis22/SplitMark |
+|________________________________________|
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||
+  ^----^----^------^-------^--^--`,
+  "font-family: monospace;"
+);
+
