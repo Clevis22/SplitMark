@@ -10,7 +10,7 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <title>SplitMark</title>
     <meta name="description" content="SplitMark: An online, feature-rich, and easy-to-use Markdown editor for creating and previewing Markdown files. Perfect for documentation, notes, and READMEs.">
-    <link rel="stylesheet" href="github-markdown.css">
+    <link rel="stylesheet" href="dependencies/github-markdown.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -38,8 +38,8 @@
       <textarea id="editor" class="markdown-body"></textarea>
       <div id="preview" class="preview markdown-body"></div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.2/split.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <script src="dependencies/split.js"></script>
+    <script src="dependencies/showdown.js"></script>
     <input type="file" id="fileInput" style="display: none;" />
     <script src="script.js"></script>
     <script src="shortcuts.js"></script>

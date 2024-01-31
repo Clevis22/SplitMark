@@ -267,3 +267,24 @@ select:hover {
     background-color: #EEE; /* Light mode table header and first column */
 }
 
+@media only screen and (max-width: 768px) {
+  .menu {
+    /* Stack the menu items vertically, switch to a column layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .menu > div {
+    /* Ensure that the menu container takes full width */
+    width: 100%;
+    text-align: center;
+  }
+  .menu button {
+    /* Modify size and margins for buttons */
+    margin: 5px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  /* Any other styling adjustments as needed */
+}
+
