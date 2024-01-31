@@ -1,3 +1,20 @@
+// funcion for capturing tab key
+document.getElementById('editor').addEventListener('keydown', function(event) {
+  if (event.key === 'Tab') {
+    // Prevent the default tab behavior (i.e., moving focus to the next focusable element)
+    event.preventDefault();
+
+    // Insert a tab at the current cursor location
+    const start = this.selectionStart;
+    const end = this.selectionEnd;
+    this.value = this.value.substring(0, start) + '\t' + this.value.substring(end);
+
+    // Move the cursor to the right after the inserted tab character
+    this.selectionStart = this.selectionEnd = start + 1;
+  }
+});
+
+
 // function for bold shorcut
 function toggleBold() {
     var start = editor.selectionStart;
