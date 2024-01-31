@@ -98,6 +98,7 @@ function insertParentheses() {
     editor.selectionStart = editor.selectionEnd = start + 1;
 }
 
+
 // Main event listener for keyboard shortcuts
 document.addEventListener('keydown', function(event) {
     if ((event.ctrlKey || event.metaKey) && !event.altKey) {

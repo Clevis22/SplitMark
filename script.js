@@ -20,13 +20,24 @@ editor.addEventListener('input', function() {
   autosave(); // Call the autosave function on each input event
 });
 
-// Function to load content from localStorage
+// Function to load content from localStorage or readme.md
 function loadContent() {
   try {
       var savedContent = localStorage.getItem('editorContent');
       if (savedContent) {
           editor.value = savedContent;
           preview.innerHTML = converter.makeHtml(savedContent);
+      } else {
+          // Attempt to load content from readme.md
+          fetch('https://raw.githubusercontent.com/Clevis22/SplitMark/main/README.md')
+            .then(response => response.text())
+            .then(text => {
+                editor.value = text;
+                preview.innerHTML = converter.makeHtml(text);
+            })
+            .catch(error => {
+                console.error('Failed to load readme.md:', error);
+            });
       }
   } catch (error) {
       console.error('Failed to load from local storage:', error);
