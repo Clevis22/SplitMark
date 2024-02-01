@@ -289,17 +289,5 @@ select:hover {
     textarea {
         font-size: 16px; /* Increase base font size for readability */
     }
-    /* Create a class for menu button when only icons should be displayed */
-    .menu-icon {
-        display: none; /* Hide text by default and show only icons */
-    }
-    /* Collapsible menu icon styling can go here */
-    /* ... */
-}
-/* When the menu icon is tapped/clicked, expand to show full options */
-.collapsed .menu-icon {
-    display: block;
-    /* Style for the expandable menu */
-    /* ... */
 }
 
