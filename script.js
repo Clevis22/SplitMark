@@ -68,11 +68,6 @@ converter = new showdown.Converter({
   extensions: ['showdownChecklist'] // Add our new extension here
 });
 
-// Function to change font size
-function changeFontSize(fontSize) {
-  editor.style.fontSize = fontSize;
-  preview.style.fontSize = fontSize;
-}
 
 editor.addEventListener('input', function() {
   preview.innerHTML = converter.makeHtml(editor.value);

@@ -98,6 +98,14 @@ function insertParentheses() {
     editor.selectionStart = editor.selectionEnd = start + 1;
 }
 
+// Font size manipulation using Ctrl + '+' and Ctrl + '-'
+function changeFontSize(sizeChange) {
+    var currentFontSize = parseInt(window.getComputedStyle(editor).fontSize);
+    var newFontSize = currentFontSize + sizeChange;
+    editor.style.fontSize = `${newFontSize}px`;
+    preview.style.fontSize = `${newFontSize}px`;
+}
+
 
 // Main event listener for keyboard shortcuts
 document.addEventListener('keydown', function(event) {
@@ -119,8 +127,18 @@ document.addEventListener('keydown', function(event) {
                 event.preventDefault();
                 toggleEmoji();
                 break;
+            case '=': // Ctrl + '=' is the actual result when pressing Ctrl + '+'
+            if (event.key === '=' || event.key === '+') {
+                event.preventDefault();
+                changeFontSize(2);
+            }
+                break;
+           case '-':
+                event.preventDefault();
+                changeFontSize(-2);
+                break;
+            }
         }
-    }
     else if (!event.ctrlKey && !event.metaKey && !event.altKey) {
         switch (event.key) {
             case '[':

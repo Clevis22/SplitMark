@@ -20,6 +20,10 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Control Y: Redo
 
+* Control +: Increase text size
+
+* Control -: Decrease text size
+
 ## Key Features 
 * Speed: SplitMark is extremely lightweight and fast.
 
