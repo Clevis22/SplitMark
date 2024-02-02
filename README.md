@@ -6,7 +6,7 @@ A real-time split-view markdown editor powered by Showdown and Split.js.
 To use SplitMark, navigate to [SplitMark.com](https://splitmark.com) or download the files to use locally.
 Enter your markdown on the left and see the live preview of the rendered output on the right. Click and drag the gutter in the center to resize the views.
 
-## Keybord Shortcuts
+## Keyboard Shortcuts
 
 * Control B: Make text bold
 
