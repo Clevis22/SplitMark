@@ -47,11 +47,12 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 ## To Do
 
-* Make a better mobile experience
+* Improve mobile styling
 
 * Add more keyboard shortcuts
 
-* Improve styling
+* Add more export options
+
 
 ## Dependencies
 * [split.js](https://github.com/splitrb/split.js?files=1)

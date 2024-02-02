@@ -84,18 +84,36 @@ function toggleEmoji() {
 function insertSquareBrackets() {
     var start = editor.selectionStart;
     var end = editor.selectionEnd;
-
-    editor.value = editor.value.substring(0, start) + '[]' + editor.value.substring(end);
-    editor.selectionStart = editor.selectionEnd = start + 1;
+    var selectedText = editor.value.substring(start, end);
+    // Check if there's a selection
+    if (start !== end) {
+        // Wrap the selection
+        editor.value = editor.value.substring(0, start) + '[' + selectedText + ']' + editor.value.substring(end);
+        editor.selectionStart = start + 1;
+        editor.selectionEnd = end + 1;
+    } else {
+        // If there's no selection, insert brackets at the cursor
+        editor.value = editor.value.substring(0, start) + '[]' + editor.value.substring(end);
+        editor.selectionStart = editor.selectionEnd = start + 1;
+    }
 }
 
 //function for auto-closing ()
 function insertParentheses() {
     var start = editor.selectionStart;
     var end = editor.selectionEnd;
-
-    editor.value = editor.value.substring(0, start) + '()' + editor.value.substring(end);
-    editor.selectionStart = editor.selectionEnd = start + 1;
+    var selectedText = editor.value.substring(start, end);
+    // Check if there's a selection
+    if (start !== end) {
+        // Wrap the selection
+        editor.value = editor.value.substring(0, start) + '(' + selectedText + ')' + editor.value.substring(end);
+        editor.selectionStart = start + 1;
+        editor.selectionEnd = end + 1;
+    } else {
+        // If there's no selection, insert parentheses at the cursor
+        editor.value = editor.value.substring(0, start) + '()' + editor.value.substring(end);
+        editor.selectionStart = editor.selectionEnd = start + 1;
+    }
 }
 
 // Font size manipulation using Ctrl + '+' and Ctrl + '-'
