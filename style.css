@@ -193,7 +193,68 @@ select:hover {
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3{
-  border-bottom: 1px solid #787878; /* Change the hex color code to your desired color */
+  border-bottom: 1px solid #787878;
+}
+
+/* Dropdown styles*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #4A4F55;
+  color: #D4D4D4;
+  padding: 0.5em 1em;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+  margin: 0 5px;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #1E1E1E;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #D4D4D4;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #505050;
+  color: #D4D4D4;
+} 
+
+/* Light mode styles for dropdown */
+.light-mode .dropbtn {
+  background-color: #E6E6E6;
+  color: #333;
+}
+
+.light-mode .dropdown-content {
+  background-color: #FFFFFF;
+}
+
+.light-mode .dropdown-content a {
+  color: #333; 
+}
+
+.light-mode .dropdown-content a:hover {
+  background-color: #E0E0E0;
+}
+
+.dropdown:hover .dropbtn {
+  opacity: 0.8; 
 }
 
 .light-mode .markdown-body h1,

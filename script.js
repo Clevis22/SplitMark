@@ -142,10 +142,71 @@ function exportAsHtml() {
   URL.revokeObjectURL(url);
 }
 
-// Add event listener for the HTML export button
+// PDF export function
+function exportAsPdf() {
+  // Define PDF-specific styles
+  const pdfStyles = `
+    <style>
+      /* Existing PDF-specific styles */
+      body {
+        color: #000000; /* Darker text color for PDFs */
+        font-size: 12pt;
+      }
+      /* Prevent text cutoff by avoiding page breaks inside these elements */
+      h1, h2, h3, h4, h5, h6, p, li, input, figure, table, pre {
+        page-break-inside: avoid;
+      }
+      /* Ensure next element starts on a new page if close to page end */
+      h1, h2, h3 {
+        page-break-after: auto;
+      }
+      /* Other styles as needed for better rendering */
+    </style>
+  `;
+
+  // Get the HTML content with the added styles
+  const htmlContent = pdfStyles + preview.innerHTML;
+
+  // Set PDF filename
+  const filename = "document.pdf";
+
+  // Call html2pdf function and pass the styled HTML content
+  html2pdf().from(htmlContent).set({
+    margin: [20, 10, 20, 10], // top, right, bottom, left
+    filename: filename,
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }).save();
+}
+
+// Get the dropdown button and the dropdown content elements
+var dropbtn = document.querySelector('.dropbtn');
+var dropdownContent = document.querySelector('.dropdown-content');
+
+// Add event listener to handle dropdown
+dropbtn.addEventListener('click', function(event) {
+  // Prevent the event from closing instantly
+  event.stopPropagation();
+
+  // Toggle the display of the dropdown content
+  dropdownContent.style.display = (dropdownContent.style.display === 'block' ? 'none' : 'block');
+});
+
+// Close the dropdown if clicked outside
+window.addEventListener('click', function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    if (dropdownContent.style.display === 'block') {
+      dropdownContent.style.display = 'none';
+    }
+  }
+});
+
+
+// event listner for the dropdown
+document.getElementById('exportPDFButton').addEventListener('click', exportAsPdf);
 document.getElementById('exportHTMLButton').addEventListener('click', exportAsHtml);
 
-// Updated function to toggle light/dark mode for the entire page
+//function to toggle theme
 function toggleLightMode() {
   const bodyClassList = document.body.classList;
   const isLightMode = bodyClassList.toggle('light-mode');
@@ -157,6 +218,7 @@ function toggleLightMode() {
   updateThemeElements(isLightMode);
 }
 
+// Function to update styling of elements that depend on the theme
 function updateThemeElements(isLightMode) {
   const toggleElements = document.querySelectorAll('.toggle-mode, .menu, .editor-preview, .preview, .markdown-body');
   toggleElements.forEach(element => {

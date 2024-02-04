@@ -37,7 +37,9 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Emoji Support: [Support for emojis through Showdown](https://github.com/showdownjs/showdown/wiki/Emojis#introduction)
 
-* Local Files: Upload and download from the local disk or export as HTML.
+* Local Files: Upload and download markdown files
+
+* Export: Export the rendered markdown as HTML or PDF documents.
 
 * Local Storage: SplitMark automatically saves editor content between sessions.
 
@@ -52,6 +54,8 @@ Enter your markdown on the left and see the live preview of the rendered output 
 * Add more keyboard shortcuts
 
 * Add more export options
+
+* Fix exported PDF tables
 
 
 ## Dependencies

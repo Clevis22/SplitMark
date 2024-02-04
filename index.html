@@ -24,13 +24,21 @@
       </div>
       <!-- Font size selector -->
       <div>
-        <button id="exportHTMLButton">Export as HTML</button>
+        <!-- Dropdown addition in index.html -->
+        <div class="dropdown">
+          <button class="dropbtn">Export as...</button>
+          <div class="dropdown-content">
+            <a href="#" id="exportHTMLButton">HTML</a>
+            <a href="#" id="exportPDFButton">PDF</a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="editor-preview">
       <textarea id="editor" class="markdown-body"></textarea>
       <div id="preview" class="preview markdown-body"></div>
     </div>
+    <script src="dependencies/html2pdf.js"></script>
     <script src="dependencies/split.js"></script>
     <script src="dependencies/showdown.js"></script>
     <input type="file" id="fileInput" style="display: none;" />
