@@ -62,6 +62,7 @@ Enter your markdown on the left and see the live preview of the rendered output 
 * [split.js](https://github.com/splitrb/split.js?files=1)
 * [Showdown](https://showdownjs.com/)
 * [GitHub Markdown CSS](https://github.com/sindresorhus/github-markdown-css)
+* [html2PDF.js](https://ekoopmans.github.io/html2pdf.js/)
 
 ## Socials
 * [X (Twitter)](https://twitter.com/splitmark1)
