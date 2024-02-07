@@ -1,6 +1,6 @@
 # SplitMark
 
-A real-time split-view markdown editor powered by Showdown and Split.js.
+A privacy-focused, open-source, real-time split-view markdown editor powered by Showdown and Split.js.
 
 ## Usage
 To use SplitMark, navigate to [SplitMark.com](https://splitmark.com) or download the files to use locally.
@@ -19,6 +19,8 @@ Enter your markdown on the left and see the live preview of the rendered output 
 * Control Z: Undo
 
 * Control Y: Redo
+
+* Control F: Toggle between split view, full screen editor, and full screen preview
 
 * Control +: Increase text size
 
@@ -56,7 +58,6 @@ Enter your markdown on the left and see the live preview of the rendered output 
 * Add more export options
 
 * Fix exported PDF tables
-
 
 ## Dependencies
 * [split.js](https://github.com/splitrb/split.js?files=1)

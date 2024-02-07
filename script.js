@@ -153,7 +153,7 @@ function exportAsPdf() {
         font-size: 12pt;
       }
       /* Prevent text cutoff by avoiding page breaks inside these elements */
-      h1, h2, h3, h4, h5, h6, p, li, input, figure, table, pre {
+      h1, h2, h3, h4, h5, h6, p, li, input, figure, table, thead, tr, tbody, pre {
         page-break-inside: avoid;
       }
       /* Ensure next element starts on a new page if close to page end */
