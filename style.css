@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('inter/Inter-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -50,6 +57,7 @@ textarea,
     padding: 1em 1em;
     background-color: #1E1E1E;
     color: #D4D4D4;
+    font-family: 'Inter', sans-serif;
 }
 
 /* Style for the font size selector */
@@ -87,6 +95,7 @@ button {
     outline: none;
     background-color: #4A4F55;
     color: #D4D4D4;
+    font-family: 'Inter', sans-serif;
 }
 
 
@@ -113,6 +122,7 @@ select {
     background-color: #4A4F55;
     color: #D4D4D4;
     cursor: pointer;
+    font-family: 'Inter', sans-serif;
 }
 
 select:hover {
