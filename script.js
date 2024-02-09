@@ -77,10 +77,10 @@ Split(['#editor', '#preview'], {
   sizes: [50, 50],
 });
 
-// Function to save to disk
-function saveToDisk() {
+// Function to save to save as markdown
+function exportAsMarkdown() {
   var text = editor.value;
-  var filename = "markdown.md";
+  var filename = "document.md";
   var blob = new Blob([text], {
       type: "text/markdown;charset=utf-8"
   });
@@ -93,6 +93,8 @@ function saveToDisk() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+document.getElementById('exportMarkdownButton').addEventListener('click', exportAsMarkdown);
+
 
 // Function to load from disk
 function loadFromDisk() {
@@ -113,8 +115,7 @@ function loadFromDisk() {
       once: true
   });
 }
-// Wire up the buttons
-document.getElementById('saveButton').addEventListener('click', saveToDisk);
+// Wire up the button
 document.getElementById('loadButton').addEventListener('click', loadFromDisk);
 
 // Function to lock editor and output scroll
