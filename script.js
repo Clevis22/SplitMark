@@ -237,6 +237,31 @@ document.addEventListener('DOMContentLoaded', function() {
   updateThemeElements(isLightMode);
 });
 
+// function to show word count and reading time
+function showWordCountAndReadingTime() {
+  const text = editor.value;
+  const wordCount = text.match(/\b\w+\b/g)?.length || 0; // Updated regex for more accurate word matching
+  const readingTime = Math.ceil(wordCount / 228); // Assuming average reading speed of 228 words per minute
+  // Create the word count display div if it doesn't exist
+  if (!document.getElementById('wordCountDisplay')) {
+    const wordCountDisplay = document.createElement('div');
+    wordCountDisplay.id = 'wordCountDisplay';
+    document.body.appendChild(wordCountDisplay);
+  }
+  // Set the content of the word count display
+  const wordCountDisplay = document.getElementById('wordCountDisplay');
+  wordCountDisplay.textContent = `Word Count: ${wordCount}\nTime to Read: ${readingTime} minute(s)`;
+  // Show the word count display
+  wordCountDisplay.style.display = 'block';
+  // Hide the word count display when other keys are pressed
+  function hideWordCountDisplay() {
+    wordCountDisplay.style.display = 'none';
+  }
+  // Add event listener to hide the display on keyup
+  window.addEventListener('keyup', hideWordCountDisplay, { once: true });
+}
+
+
 console.log(
   `%c ________________________________________
 |  Welcome to SplitMark!                 |

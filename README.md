@@ -1,6 +1,6 @@
 # SplitMark
 
-A privacy-focused, open-source, real-time split-view markdown editor powered by Showdown and Split.js.
+A privacy-focused, open-source, real-time split-view markdown editor powered by Showdown and Split.js. No login, no ads, and no tracking. Just markdown editing in its purest.
 
 ## Usage
 To use SplitMark, navigate to [SplitMark.com](https://splitmark.com) or download the files to use locally.
@@ -25,6 +25,8 @@ Enter your markdown on the left and see the live preview of the rendered output 
 * Control +: Increase text size
 
 * Control -: Decrease text size
+
+* Control Shift C: Show word count and time to read
 
 ## Key Features 
 * Speed: SplitMark is extremely lightweight and fast.

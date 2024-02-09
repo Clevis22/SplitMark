@@ -218,3 +218,10 @@ document.addEventListener('keydown', function(event) {
     preview.innerHTML = converter.makeHtml(editor.value);
     autosave();
 });
+
+window.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && event.shiftKey && event.code === 'KeyC') {
+    showWordCountAndReadingTime();
+    event.preventDefault(); // Prevents any default action associated with the Control+Shift+C shortcut
+  }
+});
