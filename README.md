@@ -1,3 +1,5 @@
+![SplitMark Logo](images/githubpreview.png)
+
 # SplitMark
 
 A privacy-focused, open-source, real-time split-view markdown editor powered by Showdown and Split.js. No login, no ads, and no tracking. Just markdown editing in its purest.

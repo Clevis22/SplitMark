@@ -241,8 +241,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // function to show word count and reading time
 function showWordCountAndReadingTime() {
   const text = editor.value;
-  const wordCount = text.match(/\b\w+\b/g)?.length || 0; // Updated regex for more accurate word matching
-  const readingTime = Math.ceil(wordCount / 228); // Assuming average reading speed of 228 words per minute
+  const wordCount = text.match(/\b\w+\b/g)?.length || 0; 
+  const characterCount = text.replace(/^\s+|\s+$/g, '').length; 
+  const readingTime = Math.ceil(wordCount / 228); 
   // Create the word count display div if it doesn't exist
   if (!document.getElementById('wordCountDisplay')) {
     const wordCountDisplay = document.createElement('div');
@@ -251,7 +252,7 @@ function showWordCountAndReadingTime() {
   }
   // Set the content of the word count display
   const wordCountDisplay = document.getElementById('wordCountDisplay');
-  wordCountDisplay.textContent = `Word Count: ${wordCount}\nTime to Read: ${readingTime} minute(s)`;
+  wordCountDisplay.innerHTML = `Word Count: ${wordCount}<br>Character Count: ${characterCount}<br>Time to Read: ${readingTime} minute(s)`;
   // Show the word count display
   wordCountDisplay.style.display = 'block';
   // Hide the word count display when other keys are pressed
