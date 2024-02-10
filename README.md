@@ -22,7 +22,7 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Control Y: Redo
 
-* Control F: Toggle between split view, full screen editor, and full screen preview
+* Control Enter: Toggle between split view, full screen editor, and full screen preview
 
 * Control +: Increase text size
 

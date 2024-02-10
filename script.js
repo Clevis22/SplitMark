@@ -277,15 +277,6 @@ function syncScrollEditor() {
   isSyncingEditorScroll = false;
 }
 
-// Function to sync preview scroll
-function syncScrollPreview() {
-  if (!isSyncingPreviewScroll) {
-      isSyncingEditorScroll = true;
-      const percentageScrolled = preview.scrollTop / (preview.scrollHeight - preview.clientHeight);
-      editor.scrollTop = percentageScrolled * (editor.scrollHeight - editor.clientHeight);
-  }
-  isSyncingPreviewScroll = false;
-}
 
 // Event listeners for syncing scroll
 editor.addEventListener('scroll', syncScrollEditor);

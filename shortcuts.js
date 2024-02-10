@@ -186,7 +186,7 @@ document.addEventListener('keydown', function(event) {
                 event.preventDefault();
                 toggleEmoji();
                 break;
-            case 'f':
+            case 'enter':
                 event.preventDefault();
                 toggleViewMode();
                 break;

@@ -40,10 +40,6 @@ textarea,
     overflow: auto;
 }
 
-.preview {
-    overflow: auto;
-}
-
 .markdown-body {
     min-width: 200px;
     color: #D4D4D4;
