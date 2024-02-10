@@ -71,3 +71,6 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 ## Socials
 * [X (Twitter)](https://twitter.com/splitmark1)
+
+## Donate
+Donations are never necessary but always accepted. I am not a full time software developer, I simply do this for fun. If you would like to support my work, I gladly welcome any Monero donations, but please feel no obligation.<br><br>4AuvFRMXKSBbrma6vsRovTRUSf3H3f5Zf41VyJwg5gjbd2qiryH6BXe38DSVPkL4uNJr3RstK2jPkaJFZmtyJ7fVPPCNnja

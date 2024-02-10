@@ -6,6 +6,12 @@ var converter = new showdown.Converter({
 var editor = document.getElementById('editor');
 var preview = document.getElementById('preview');
 
+function updatePreview() {
+  var scrollTop = preview.scrollTop;
+  preview.innerHTML = converter.makeHtml(editor.value);
+  preview.scrollTop = scrollTop;
+}
+
 // Function to automatically save the content to localStorage
 function autosave() {
   try {
@@ -16,7 +22,7 @@ function autosave() {
 }
 // Add event listener to save content to localStorage on input
 editor.addEventListener('input', function() {
-  preview.innerHTML = converter.makeHtml(editor.value);
+  updatePreview()
   autosave(); // Call the autosave function on each input event
 });
 
@@ -30,14 +36,14 @@ function loadContent() {
       } else {
           // Attempt to load content from readme.md
           fetch('https://raw.githubusercontent.com/Clevis22/SplitMark/main/README.md')
-            .then(response => response.text())
-            .then(text => {
-                editor.value = text;
-                preview.innerHTML = converter.makeHtml(text);
-            })
-            .catch(error => {
-                console.error('Failed to load readme.md:', error);
-            });
+              .then(response => response.text())
+              .then(text => {
+                  editor.value = text;
+                  preview.innerHTML = converter.makeHtml(text);
+              })
+              .catch(error => {
+                  console.error('Failed to load readme.md:', error);
+              });
       }
   } catch (error) {
       console.error('Failed to load from local storage:', error);
@@ -66,11 +72,6 @@ converter = new showdown.Converter({
   strikethrough: true,
   emoji: true,
   extensions: ['showdownChecklist'] // Add our new extension here
-});
-
-
-editor.addEventListener('input', function() {
-  preview.innerHTML = converter.makeHtml(editor.value);
 });
 
 Split(['#editor', '#preview'], {
@@ -118,14 +119,6 @@ function loadFromDisk() {
 // Wire up the button
 document.getElementById('loadButton').addEventListener('click', loadFromDisk);
 
-// Function to lock editor and output scroll
-editor.addEventListener('scroll', function() {
-  var editorScrollHeight = editor.scrollHeight - editor.clientHeight;
-  var previewScrollHeight = preview.scrollHeight - preview.clientHeight;
-  var scrollPercentage = editor.scrollTop / editorScrollHeight;
-  preview.scrollTop = previewScrollHeight * scrollPercentage;
-});
-
 // Function to export as HTML
 function exportAsHtml() {
   var htmlContent = preview.innerHTML;
@@ -147,23 +140,23 @@ function exportAsHtml() {
 function exportAsPdf() {
   // Define PDF-specific styles
   const pdfStyles = `
-    <style>
-      /* Existing PDF-specific styles */
-      body {
-        color: #000000; /* Darker text color for PDFs */
-        font-size: 12pt;
-      }
-      /* Prevent text cutoff by avoiding page breaks inside these elements */
-      h1, h2, h3, h4, h5, h6, p, li, input, figure, table, thead, tr, tbody, pre {
-        page-break-inside: avoid;
-      }
-      /* Ensure next element starts on a new page if close to page end */
-      h1, h2, h3 {
-        page-break-after: auto;
-      }
-      /* Other styles as needed for better rendering */
-    </style>
-  `;
+  <style>
+    /* Existing PDF-specific styles */
+    body {
+      color: #000000; /* Darker text color for PDFs */
+      font-size: 12pt;
+    }
+    /* Prevent text cutoff by avoiding page breaks inside these elements */
+    h1, h2, h3, h4, h5, h6, p, li, input, figure, table, thead, tr, tbody, pre {
+      page-break-inside: avoid;
+    }
+    /* Ensure next element starts on a new page if close to page end */
+    h1, h2, h3 {
+      page-break-after: auto;
+    }
+    /* Other styles as needed for better rendering */
+  </style>
+`;
 
   // Get the HTML content with the added styles
   const htmlContent = pdfStyles + preview.innerHTML;
@@ -173,10 +166,16 @@ function exportAsPdf() {
 
   // Call html2pdf function and pass the styled HTML content
   html2pdf().from(htmlContent).set({
-    margin: [20, 10, 20, 10], // top, right, bottom, left
-    filename: filename,
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      margin: [20, 10, 20, 10], // top, right, bottom, left
+      filename: filename,
+      html2canvas: {
+          scale: 2
+      },
+      jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+      }
   }).save();
 }
 
@@ -196,9 +195,9 @@ dropbtn.addEventListener('click', function(event) {
 // Close the dropdown if clicked outside
 window.addEventListener('click', function(event) {
   if (!event.target.matches('.dropbtn')) {
-    if (dropdownContent.style.display === 'block') {
-      dropdownContent.style.display = 'none';
-    }
+      if (dropdownContent.style.display === 'block') {
+          dropdownContent.style.display = 'none';
+      }
   }
 });
 
@@ -223,11 +222,11 @@ function toggleLightMode() {
 function updateThemeElements(isLightMode) {
   const toggleElements = document.querySelectorAll('.toggle-mode, .menu, .editor-preview, .preview, .markdown-body');
   toggleElements.forEach(element => {
-    if (isLightMode) {
-      element.classList.add('light-mode');
-    } else {
-      element.classList.remove('light-mode');
-    }
+      if (isLightMode) {
+          element.classList.add('light-mode');
+      } else {
+          element.classList.remove('light-mode');
+      }
   });
 }
 
@@ -241,14 +240,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // function to show word count and reading time
 function showWordCountAndReadingTime() {
   const text = editor.value;
-  const wordCount = text.match(/\b\w+\b/g)?.length || 0; 
-  const characterCount = text.replace(/^\s+|\s+$/g, '').length; 
-  const readingTime = Math.ceil(wordCount / 228); 
+  const wordCount = text.match(/\b\w+\b/g)?.length || 0;
+  const characterCount = text.replace(/^\s+|\s+$/g, '').length;
+  const readingTime = Math.ceil(wordCount / 228);
   // Create the word count display div if it doesn't exist
   if (!document.getElementById('wordCountDisplay')) {
-    const wordCountDisplay = document.createElement('div');
-    wordCountDisplay.id = 'wordCountDisplay';
-    document.body.appendChild(wordCountDisplay);
+      const wordCountDisplay = document.createElement('div');
+      wordCountDisplay.id = 'wordCountDisplay';
+      document.body.appendChild(wordCountDisplay);
   }
   // Set the content of the word count display
   const wordCountDisplay = document.getElementById('wordCountDisplay');
@@ -257,11 +256,39 @@ function showWordCountAndReadingTime() {
   wordCountDisplay.style.display = 'block';
   // Hide the word count display when other keys are pressed
   function hideWordCountDisplay() {
-    wordCountDisplay.style.display = 'none';
+      wordCountDisplay.style.display = 'none';
   }
   // Add event listener to hide the display on keyup
-  window.addEventListener('keyup', hideWordCountDisplay, { once: true });
+  window.addEventListener('keyup', hideWordCountDisplay, {
+      once: true
+  });
 }
+
+let isSyncingEditorScroll = false;
+let isSyncingPreviewScroll = false;
+
+// Function to sync editor scroll
+function syncScrollEditor() {
+  if (!isSyncingEditorScroll) {
+      isSyncingPreviewScroll = true;
+      const percentageScrolled = editor.scrollTop / (editor.scrollHeight - editor.clientHeight);
+      preview.scrollTop = percentageScrolled * (preview.scrollHeight - preview.clientHeight);
+  }
+  isSyncingEditorScroll = false;
+}
+
+// Function to sync preview scroll
+function syncScrollPreview() {
+  if (!isSyncingPreviewScroll) {
+      isSyncingEditorScroll = true;
+      const percentageScrolled = preview.scrollTop / (preview.scrollHeight - preview.clientHeight);
+      editor.scrollTop = percentageScrolled * (editor.scrollHeight - editor.clientHeight);
+  }
+  isSyncingPreviewScroll = false;
+}
+
+// Event listeners for syncing scroll
+editor.addEventListener('scroll', syncScrollEditor);
 
 
 console.log(

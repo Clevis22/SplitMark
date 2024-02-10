@@ -36,10 +36,9 @@ textarea,
     resize: none;
     background-color: #1E1E1E;
     color: #D4D4D4;
-    padding-bottom: 3em;
+    padding-bottom: 4em;
     overflow: auto;
 }
-
 
 .preview {
     overflow: auto;

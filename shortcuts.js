@@ -1,17 +1,17 @@
 // funcion for capturing tab key
 document.getElementById('editor').addEventListener('keydown', function(event) {
-  if (event.key === 'Tab') {
-    // Prevent the default tab behavior (i.e., moving focus to the next focusable element)
-    event.preventDefault();
+    if (event.key === 'Tab') {
+        // Prevent the default tab behavior (i.e., moving focus to the next focusable element)
+        event.preventDefault();
 
-    // Insert a tab at the current cursor location
-    const start = this.selectionStart;
-    const end = this.selectionEnd;
-    this.value = this.value.substring(0, start) + '\t' + this.value.substring(end);
+        // Insert a tab at the current cursor location
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        this.value = this.value.substring(0, start) + '\t' + this.value.substring(end);
 
-    // Move the cursor to the right after the inserted tab character
-    this.selectionStart = this.selectionEnd = start + 1;
-  }
+        // Move the cursor to the right after the inserted tab character
+        this.selectionStart = this.selectionEnd = start + 1;
+    }
 });
 
 
@@ -128,42 +128,42 @@ function changeFontSize(sizeChange) {
 var viewModeToggleState = 0;
 // Function to toggle gutter visibility
 function toggleGutterVisibility(show) {
-  const gutters = document.getElementsByClassName("gutter");
-  for (let gutter of gutters) {
-    gutter.style.display = show ? 'block' : 'none';
-  }
+    const gutters = document.getElementsByClassName("gutter");
+    for (let gutter of gutters) {
+        gutter.style.display = show ? 'block' : 'none';
+    }
 }
 // function to toggle view mode
 function toggleViewMode() {
-  const editorElement = document.getElementById('editor');
-  const previewElement = document.getElementById('preview');
-  const editorPreviewContainer = document.querySelector('.editor-preview');
-  // Cycle through the viewModeToggleState
-  viewModeToggleState = (viewModeToggleState + 1) % 3;
-  switch (viewModeToggleState) {
-    case 0: // Split view
-        editorElement.style.display = 'block';
-        previewElement.style.display = 'block';
-        toggleGutterVisibility(true); // Show gutter
-        editorElement.style.width = '50%';
-        previewElement.style.width = '50%';
-        break;
-    case 1: // Full screen editor
-        editorElement.style.display = 'block';
-        previewElement.style.display = 'none';
-        toggleGutterVisibility(false); // Hide gutter
-        editorElement.style.width = '100%';
-        break;
-    case 2: // Full screen preview
-        editorElement.style.display = 'none';
-        previewElement.style.display = 'block';
-        toggleGutterVisibility(false); // Hide gutter
-        previewElement.style.width = '100%';
-        break;
-  }
-  
-  preview.innerHTML = converter.makeHtml(editor.value);
-  window.dispatchEvent(new Event('resize'));
+    const editorElement = document.getElementById('editor');
+    const previewElement = document.getElementById('preview');
+    const editorPreviewContainer = document.querySelector('.editor-preview');
+    // Cycle through the viewModeToggleState
+    viewModeToggleState = (viewModeToggleState + 1) % 3;
+    switch (viewModeToggleState) {
+        case 0: // Split view
+            editorElement.style.display = 'block';
+            previewElement.style.display = 'block';
+            toggleGutterVisibility(true); // Show gutter
+            editorElement.style.width = '50%';
+            previewElement.style.width = '50%';
+            break;
+        case 1: // Full screen editor
+            editorElement.style.display = 'block';
+            previewElement.style.display = 'none';
+            toggleGutterVisibility(false); // Hide gutter
+            editorElement.style.width = '100%';
+            break;
+        case 2: // Full screen preview
+            editorElement.style.display = 'none';
+            previewElement.style.display = 'block';
+            toggleGutterVisibility(false); // Hide gutter
+            previewElement.style.width = '100%';
+            break;
+    }
+
+    updatePreview();
+    window.dispatchEvent(new Event('resize'));
 }
 
 // Main event listener for keyboard shortcuts
@@ -191,18 +191,17 @@ document.addEventListener('keydown', function(event) {
                 toggleViewMode();
                 break;
             case '=': // Ctrl + '=' is the actual result when pressing Ctrl + '+'
-            if (event.key === '=' || event.key === '+') {
-                event.preventDefault();
-                changeFontSize(2);
-            }
+                if (event.key === '=' || event.key === '+') {
+                    event.preventDefault();
+                    changeFontSize(2);
+                }
                 break;
-           case '-':
+            case '-':
                 event.preventDefault();
                 changeFontSize(-2);
                 break;
-            }
         }
-    else if (!event.ctrlKey && !event.metaKey && !event.altKey) {
+    } else if (!event.ctrlKey && !event.metaKey && !event.altKey) {
         switch (event.key) {
             case '[':
                 event.preventDefault();
@@ -215,13 +214,13 @@ document.addEventListener('keydown', function(event) {
         }
     }
     // Update preview and autosave after applying the formatting
-    preview.innerHTML = converter.makeHtml(editor.value);
+    updatePreview();
     autosave();
 });
 
 window.addEventListener('keydown', function(event) {
-  if (event.ctrlKey && event.shiftKey && event.code === 'KeyC') {
-    showWordCountAndReadingTime();
-    event.preventDefault(); // Prevents any default action associated with the Control+Shift+C shortcut
-  }
+    if (event.ctrlKey && event.shiftKey && event.code === 'KeyC') {
+        showWordCountAndReadingTime();
+        event.preventDefault(); // Prevents any default action associated with the Control+Shift+C shortcut
+    }
 });
