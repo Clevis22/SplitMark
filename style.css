@@ -38,6 +38,7 @@ textarea,
     color: #D4D4D4;
     padding-bottom: 4em;
     overflow: auto;
+    overflow-anchor: none;
 }
 
 .markdown-body {
