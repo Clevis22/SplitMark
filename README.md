@@ -18,6 +18,8 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Control E: Emoji
 
+* Control L: Line break
+
 * Control Z: Undo
 
 * Control Y: Redo

@@ -166,6 +166,19 @@ function toggleViewMode() {
     window.dispatchEvent(new Event('resize'));
 }
 
+// Function to add <br>
+function newLine(){
+  let editor = document.getElementById('editor');
+  const start = editor.selectionStart;
+  const end = editor.selectionEnd;
+  editor.value = editor.value.substring(0, start) + '<br>' + editor.value.substring(end);
+  // Move the cursor after the <br> tag
+  editor.selectionStart = editor.selectionEnd = start + 4;
+  // Update preview and autosave after inserting <br>
+  updatePreview();
+  autosave();
+}
+
 // Main event listener for keyboard shortcuts
 document.addEventListener('keydown', function(event) {
     if ((event.ctrlKey || event.metaKey) && !event.altKey) {
@@ -190,6 +203,10 @@ document.addEventListener('keydown', function(event) {
                 event.preventDefault();
                 toggleViewMode();
                 break;
+            case 'l':
+                event.preventDefault();
+                newLine();
+            break;
             case '=': // Ctrl + '=' is the actual result when pressing Ctrl + '+'
                 if (event.key === '=' || event.key === '+') {
                     event.preventDefault();
