@@ -10,9 +10,9 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 ## Keyboard Shortcuts
 
-* Control B: Make text bold
+* Control B: Bold
 
-* Control I: Italicize text
+* Control I: Italicize
 
 * Control S: Strikethrough
 
