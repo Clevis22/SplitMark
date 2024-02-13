@@ -392,6 +392,10 @@ select:hover {
         padding: 0.3em 0.5em; 
         font-size: 0.7rem; 
     }
+  .toggle-mode {
+      padding: 0.3em 0.5em; 
+      font-size: 0.7rem; 
+  }
 }
 
 
