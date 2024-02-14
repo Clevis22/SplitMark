@@ -59,7 +59,7 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Improve mobile styling
 
-* Add more keyboard shortcuts
+* Improve performance for long documents
 
 * Add more export options
 
@@ -70,6 +70,7 @@ Enter your markdown on the left and see the live preview of the rendered output 
 * [Showdown](https://showdownjs.com/)
 * [GitHub Markdown CSS](https://github.com/sindresorhus/github-markdown-css)
 * [html2PDF.js](https://ekoopmans.github.io/html2pdf.js/)
+* [Highlight.js](https://highlightjs.org/)
 
 ## Socials
 * [X (Twitter)](https://twitter.com/splitmark1)

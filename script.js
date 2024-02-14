@@ -10,6 +10,26 @@ function updatePreview() {
   var scrollTop = preview.scrollTop;
   preview.innerHTML = converter.makeHtml(editor.value);
   preview.scrollTop = scrollTop;
+
+  var markdownText = editor.value;
+  var html = converter.makeHtml(markdownText);
+  preview.innerHTML = html;
+  preview.querySelectorAll('pre code').forEach((block) => {
+    hljs.highlightBlock(block);
+  });
+}
+
+// Debounce function to limit the frequency of autosave invocations
+function debounce(func, wait) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+      timeout = null;
+      func.apply(context, args);
+    }, wait);
+  };
 }
 
 // Function to automatically save the content to localStorage
@@ -20,11 +40,15 @@ function autosave() {
       console.error('Failed to save to local storage:', error);
   }
 }
+// Debounce the autosave function with a delay of 1000 milliseconds (1 second)
+var debouncedAutosave = debounce(autosave, 1000);
+
 // Add event listener to save content to localStorage on input
 editor.addEventListener('input', function() {
-  updatePreview()
-  autosave(); // Call the autosave function on each input event
+  updatePreview();
+  debouncedAutosave(); // Call the debounced autosave function on each input event
 });
+
 
 // Function to load content from localStorage or readme.md
 function loadContent() {
