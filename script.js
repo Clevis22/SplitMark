@@ -22,14 +22,11 @@ converter = new showdown.Converter({
 
 var editor = document.getElementById('editor');
 var preview = document.getElementById('preview');
-
 var previewWorker = new Worker('previewWorker.js');
-
 
 // Update the updatePreview function to account for the padding
 function updatePreview() {
   previewWorker.postMessage(editor.value);
-
   const paddingHeight = 30; 
   const currentScrollPos = editor.scrollTop;
   const maxScrollPos = editor.scrollHeight - editor.clientHeight - paddingHeight;
@@ -80,13 +77,6 @@ function autosave() {
 }
 // Debounce the autosave function with a delay of 1000 milliseconds (1 second)
 var debouncedAutosave = debounce(autosave, 1000);
-
-// Add event listener to save content to localStorage on input
-editor.addEventListener('input', function() {
-  updatePreview();
-  debouncedAutosave(); // Call the debounced autosave function on each input event
-});
-
 
 // Function to load content from localStorage or readme.md
 function loadContent() {
@@ -312,11 +302,14 @@ let isSyncingPreviewScroll = false;
 // Function to sync editor scroll
 function syncScrollEditor() {
   if (!isSyncingEditorScroll) {
-      isSyncingPreviewScroll = true;
-      const percentageScrolled = editor.scrollTop / (editor.scrollHeight - editor.clientHeight);
-      preview.scrollTop = percentageScrolled * (preview.scrollHeight - preview.clientHeight);
+    isSyncingPreviewScroll = true;
+
+    // Calculate the percentage scrolled in the editor
+    const percentageScrolled = Math.min(editor.scrollTop / (editor.scrollHeight - editor.clientHeight), 1);
+    // Apply that percentage to the scroll height of the preview
+    preview.scrollTop = percentageScrolled * (preview.scrollHeight - preview.clientHeight);
+    isSyncingPreviewScroll = false;
   }
-  isSyncingEditorScroll = false;
 }
 
 

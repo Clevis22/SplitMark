@@ -13,7 +13,6 @@ showdown.extension('showdownChecklist', function() {
       }
   }];
 });
-
 // Instantiate a converter
 var converter = new showdown.Converter({
   tables: true,
