@@ -1,8 +1,25 @@
-var converter = new showdown.Converter({
+// Extension to handle checklists in Markdown
+showdown.extension('showdownChecklist', function() {
+  return [{
+      type: 'lang',
+      filter: function(text) {
+          return text
+              // Replace "- [ ]" with an unchecked checkbox
+              .replace(/-\s\[\s\]\s(.+)/g, '<li class="checklist-item"><input type="checkbox" disabled> $1</li>')
+              // Replace "- [x]" or "- [X]" with a checked checkbox
+              .replace(/-\s\[\x\]\s(.+)/ig, '<li class="checklist-item"><input type="checkbox" checked disabled> $1</li>');
+      }
+  }];
+});
+
+//Definve converter
+converter = new showdown.Converter({
   tables: true,
   strikethrough: true,
-  emoji: true
+  emoji: true,
+  extensions: ['showdownChecklist'] // Add our new extension here
 });
+
 var editor = document.getElementById('editor');
 var preview = document.getElementById('preview');
 
@@ -10,6 +27,7 @@ var previewWorker = new Worker('previewWorker.js');
 function updatePreview() {
   previewWorker.postMessage(editor.value);
 }
+
 previewWorker.addEventListener('message', function(event) {
   var scrollTop = preview.scrollTop;
   preview.innerHTML = event.data;
@@ -77,26 +95,6 @@ function loadContent() {
 // Call loadContent on page reload
 document.addEventListener('DOMContentLoaded', loadContent);
 
-// Extension to handle checklists in Markdown
-showdown.extension('showdownChecklist', function() {
-  return [{
-      type: 'lang',
-      filter: function(text) {
-          return text
-              // Replace "- [ ]" with an unchecked checkbox
-              .replace(/-\s\[\s\]\s(.+)/g, '<li class="checklist-item"><input type="checkbox" disabled> $1</li>')
-              // Replace "- [x]" or "- [X]" with a checked checkbox
-              .replace(/-\s\[\x\]\s(.+)/ig, '<li class="checklist-item"><input type="checkbox" checked disabled> $1</li>');
-      }
-  }];
-});
-// Adding the extension to the converter
-converter = new showdown.Converter({
-  tables: true,
-  strikethrough: true,
-  emoji: true,
-  extensions: ['showdownChecklist'] // Add our new extension here
-});
 
 Split(['#editor', '#preview'], {
   sizes: [50, 50],
