@@ -59,8 +59,6 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Improve mobile styling
 
-* Improve performance for long documents
-
 * Add more export options
 
 * Fix exported PDF tables

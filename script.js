@@ -6,18 +6,18 @@ var converter = new showdown.Converter({
 var editor = document.getElementById('editor');
 var preview = document.getElementById('preview');
 
+var previewWorker = new Worker('previewWorker.js');
 function updatePreview() {
+  previewWorker.postMessage(editor.value);
+}
+previewWorker.addEventListener('message', function(event) {
   var scrollTop = preview.scrollTop;
-  preview.innerHTML = converter.makeHtml(editor.value);
+  preview.innerHTML = event.data;
   preview.scrollTop = scrollTop;
-
-  var markdownText = editor.value;
-  var html = converter.makeHtml(markdownText);
-  preview.innerHTML = html;
   preview.querySelectorAll('pre code').forEach((block) => {
     hljs.highlightBlock(block);
   });
-}
+});
 
 // Debounce function to limit the frequency of autosave invocations
 function debounce(func, wait) {
