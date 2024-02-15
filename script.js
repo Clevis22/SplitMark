@@ -24,6 +24,8 @@ var editor = document.getElementById('editor');
 var preview = document.getElementById('preview');
 
 var previewWorker = new Worker('previewWorker.js');
+
+
 function updatePreview() {
   previewWorker.postMessage(editor.value);
 }

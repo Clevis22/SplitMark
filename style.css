@@ -396,6 +396,10 @@ select:hover {
       padding: 0.3em 0.5em; 
       font-size: 0.7rem; 
   }
+  .dropbtn{
+    padding: 0.3em 0.5em; 
+    font-size: 0.7rem; 
+  }
 }
 
 

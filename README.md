@@ -61,7 +61,7 @@ Enter your markdown on the left and see the live preview of the rendered output 
 
 * Add more export options
 
-* Fix exported PDF tables
+* Improve editing at the bottom of the page.
 
 ## Dependencies
 * [split.js](https://github.com/splitrb/split.js?files=1)

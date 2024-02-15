@@ -14,15 +14,15 @@ showdown.extension('showdownChecklist', function() {
   }];
 });
 
-self.addEventListener('message', function(event) {
-  // Instantiate a converter
-  var converter = new showdown.Converter({
-    tables: true,
-    strikethrough: true,
-    emoji: true,
-    extensions: ['showdownChecklist']
-  });
+// Instantiate a converter
+var converter = new showdown.Converter({
+  tables: true,
+  strikethrough: true,
+  emoji: true,
+  extensions: ['showdownChecklist']
+});
 
+self.addEventListener('message', function(event) {
   // Convert Markdown to HTML
   var html = converter.makeHtml(event.data);
 
