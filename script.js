@@ -26,9 +26,27 @@ var preview = document.getElementById('preview');
 var previewWorker = new Worker('previewWorker.js');
 
 
+// Update the updatePreview function to account for the padding
 function updatePreview() {
   previewWorker.postMessage(editor.value);
+
+  const paddingHeight = 30; 
+  const currentScrollPos = editor.scrollTop;
+  const maxScrollPos = editor.scrollHeight - editor.clientHeight - paddingHeight;
+
+  // Check if the user is at the bottom of the textarea
+  if (currentScrollPos >= maxScrollPos) {
+    // Scroll to include the padding at the bottom
+    editor.scrollTop = editor.scrollHeight - editor.clientHeight;
+  }
 }
+
+// Call the updated updatePreview function in the existing input event listener
+editor.addEventListener('input', function() {
+  updatePreview();
+  debouncedAutosave();
+});
+
 
 previewWorker.addEventListener('message', function(event) {
   var scrollTop = preview.scrollTop;
