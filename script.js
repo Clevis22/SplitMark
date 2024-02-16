@@ -42,15 +42,22 @@ function updatePreview() {
 editor.addEventListener('input', function() {
   updatePreview();
   debouncedAutosave();
+  syncScrollEditor();
 });
 
 
+// get the message from the worker
 previewWorker.addEventListener('message', function(event) {
   var scrollTop = preview.scrollTop;
   preview.innerHTML = event.data;
-  preview.scrollTop = scrollTop;
-  preview.querySelectorAll('pre code').forEach((block) => {
-    hljs.highlightBlock(block);
+  // Ensure scrolling happens after rendering
+  requestAnimationFrame(function() {
+    preview.scrollTop = scrollTop;
+    preview.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    // After the highlighting, sync the scroll again
+    syncScrollEditor();
   });
 });
 
@@ -303,11 +310,8 @@ let isSyncingPreviewScroll = false;
 function syncScrollEditor() {
   if (!isSyncingEditorScroll) {
     isSyncingPreviewScroll = true;
-
-    // Calculate the percentage scrolled in the editor
-    const percentageScrolled = Math.min(editor.scrollTop / (editor.scrollHeight - editor.clientHeight), 1);
-    // Apply that percentage to the scroll height of the preview
-    preview.scrollTop = percentageScrolled * (preview.scrollHeight - preview.clientHeight);
+    const editorScrollRatio = editor.scrollTop / (editor.scrollHeight - editor.clientHeight);
+    preview.scrollTop = editorScrollRatio * (preview.scrollHeight - preview.clientHeight);
     isSyncingPreviewScroll = false;
   }
 }
