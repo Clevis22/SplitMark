@@ -6,7 +6,7 @@ A privacy-focused, open-source, real-time split-view markdown editor powered by 
 
 ## Usage
 To use SplitMark, navigate to [SplitMark.com](https://splitmark.com) or download the files to use locally.
-Enter your markdown on the left and see the live preview of the rendered output on the right. Click and drag the gutter in the center to resize the views.
+Enter your GitHub Flaverd Markdown on the left and see the live preview of the rendered output on the right. Click and drag the gutter in the center to resize the views.
 
 ## Keyboard Shortcuts
 
@@ -60,8 +60,6 @@ Enter your markdown on the left and see the live preview of the rendered output 
 * Improve mobile styling
 
 * Add more export options
-
-* Improve editing at the bottom of the page.
 
 ## Dependencies
 * [split.js](https://github.com/splitrb/split.js?files=1)
