@@ -310,8 +310,20 @@ let isSyncingPreviewScroll = false;
 function syncScrollEditor() {
   if (!isSyncingEditorScroll) {
     isSyncingPreviewScroll = true;
-    const editorScrollRatio = editor.scrollTop / (editor.scrollHeight - editor.clientHeight);
-    preview.scrollTop = editorScrollRatio * (preview.scrollHeight - preview.clientHeight);
+    // Calculate the editor scroll percentage
+    const contentHeight = editor.scrollHeight;
+    const visibleHeight = editor.clientHeight;
+
+    // Determine if content needs to scroll
+    const needsToScroll = contentHeight > visibleHeight;
+    // If there isn't enough content to scroll, treat scroll percentage as 100%
+    // Otherwise, calculate it traditionally
+    const scrollPercentage = needsToScroll 
+        ? editor.scrollTop / (contentHeight - visibleHeight) 
+        : 1;
+    // Apply the scroll percentage to the preview pane
+    const previewScrollPosition = scrollPercentage * (preview.scrollHeight - preview.clientHeight);
+    preview.scrollTop = previewScrollPosition;
     isSyncingPreviewScroll = false;
   }
 }

@@ -210,6 +210,11 @@ select:hover {
   border-bottom: 1px solid #787878;
 }
 
+
+.markdown-body blockquote {
+    border-left: 4px solid gray;
+}
+
 /* Dropdown styles*/
 .dropdown {
   position: relative;
@@ -306,6 +311,11 @@ select:hover {
 .light-mode .markdown-body h2,
 .light-mode .markdown-body h3 {
   border-bottom: 1px solid #D4D4D4; /* Change the hex color code to your desired color */
+}
+
+
+.light-mode .markdown-body blockquote {
+    border-left-color: #D4D4D4;
 }
 
 .light-mode {
