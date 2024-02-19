@@ -212,7 +212,11 @@ select:hover {
 
 
 .markdown-body blockquote {
-    border-left: 4px solid gray;
+    border-left: 4px solid #787878;
+}
+
+hr{
+  background-color: #787878 !important;
 }
 
 /* Dropdown styles*/
@@ -318,10 +322,15 @@ select:hover {
     border-left-color: #D4D4D4;
 }
 
+.light-mode hr{
+  background-color: #D4D4D4 !important;
+}
+
 .light-mode {
     background-color: #FFFFFF; /* Light mode bg */
     color: #333333; /* Light mode text color */
 }
+
 .light-mode .preview,
 .light-mode .markdown-body pre,
 .light-mode .markdown-body code {
