@@ -219,6 +219,10 @@ hr{
   background-color: #787878 !important;
 }
 
+blockquote p{
+  color: #969595;
+}
+
 /* Dropdown styles*/
 .dropdown {
   position: relative;
@@ -317,6 +321,9 @@ hr{
   border-bottom: 1px solid #D4D4D4; /* Change the hex color code to your desired color */
 }
 
+.light-mode blockquote p{
+  color: #787878;
+}
 
 .light-mode .markdown-body blockquote {
     border-left-color: #D4D4D4;
