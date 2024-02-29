@@ -257,7 +257,6 @@ function toggleLightMode() {
   updateThemeElements(isLightMode);
 }
 
-// Function to update styling of elements that depend on the theme
 function updateThemeElements(isLightMode) {
   const toggleElements = document.querySelectorAll('.toggle-mode, .menu, .editor-preview, .preview, .markdown-body');
   toggleElements.forEach(element => {
@@ -267,6 +266,13 @@ function updateThemeElements(isLightMode) {
           element.classList.remove('light-mode');
       }
   });
+
+  // Target the specific image element for theme-based source switching
+  const githubLogoImage = document.querySelector('.githubLogo');
+
+  if (githubLogoImage) {
+      githubLogoImage.src = isLightMode ? 'icons/github-mark.png' : 'icons/github-mark-white.png';
+  }
 }
 
 // Apply the correct mode from localStorage when the document loads

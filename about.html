@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <title>About SplitMark - Online Markdown Editor</title>
+    <meta name="description" content="Discover the feature-rich, easy-to-use SplitMark - your ideal online Markdown editor. Seamlessly create and preview Markdown files for documentation, notes, and READMEs.">
+    <meta property="og:title" content="About SplitMark - Online Markdown Editor">
+    <meta property="og:description" content="Discover the feature-rich, easy-to-use SplitMark - your ideal online Markdown editor. Seamlessly create and preview Markdown files for documentation, notes, and READMEs.">
+    <meta property="og:url" content="https://splitmark.com/about">
+    <meta property="og:image" content="screenshot.png">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card meta tags for social media -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About SplitMark">
+    <meta name="twitter:description" content="Discover the feature-rich, easy-to-use SplitMark - your ideal online Markdown editor. Seamlessly create and preview Markdown files for documentation, notes, and READMEs.">
+    <meta name="twitter:image" content="screenshot.png">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+          font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            
+        }
+
+      .light-mode .menu {
+          background-color: white; /* Lighter color for light mode */
+      }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #242424;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+      .light-mode section{
+        background-color: white;
+      }
+
+
+        article img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+    <script>
+        // Load the theme from localStorage and apply it
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLightMode = localStorage.getItem('theme') === 'light';
+            if (isLightMode) {
+                document.body.classList.add('light-mode');
+            }
+        });
+    </script>
+</head>
+<body>
+<div class="menu">
+    <div>
+      <button onclick="window.open('index.html', '_self')">Home</button>
+        <button onclick="window.open('https://github.com/Clevis22/SplitMark/blob/main/README.md', '_blank')">GitHub</button>
+        <button onclick="window.open('https://github.com/showdownjs/showdown/wiki/Showdown\'s-Markdown-syntax', '_blank')">Syntax</button>
+    </div>
+</div>
+<header>
+    <h1>About</h1>
+</header>
+<section>
+    <article>
+        <!-- <img src="images/githubpreview.png" alt="Our Team"> -->
+        <p>SplitMark - A minimal yet feature-rich online markdown editor.</p>
+        <p>SplitMark is an online, privacy-focused, open-source, real-time markdown editor powered by Showdown and Split.js. There is no login, no ads, and no tracking. It is just markdown editing in its purest form.</p>
+      <h3>Key Features</h3>
+      <ul>
+          <li>Resizable Split View: View your rendered markdown in real-time while editing.</li>
+          <li>Emoji Support: Add emojis to your markdown through <a href="https://github.com/showdownjs/showdown/wiki/Emojis#introduction">Showdown's emoji support</a>.</li>
+          <li>Open-Source: SplitMark is open-source and available on <a href="https://github.com/Clevis22/SplitMark">GitHub.</a></li>
+          <li>Speed: SplitMark is designed to be lightweight and fast.</li>
+          <li>Privacy: SplitMark does not collect any data, and your markdown never leaves your device.</li>
+          <li>Export Files: Save your markdown locally on your device as HTML, Markdown, or PDF.</li>
+          <li>Load Files: Load your markdown or HTML from your device.</li>
+          <li>Powerful Keyboard Shortcuts: Use shortcuts to speed up your writing process.</li>
+      </ul>
+
+      <h3>Keybord Shortcuts</h3>
+      <ul>
+        <li><b>Control B:</b> Bold</li>
+        <li><i>Control I:</i> Italicize</li>
+        <li><s>Control S:</s> Strikethrough</li>
+        <li>Control E: Emoji</li>
+        <li>Control L: Line break</li>
+        <li>Control Z: Undo</li>
+        <li>Control Y: Redo</li>
+        <li>Control Enter: Toggle between split view, full-screen editor, and full-screen preview</li>
+        <li>Control +: Increase text size</li>
+        <li>Control -: Decrease text size</li>
+        <li>Control Shift C: Show word count and time to read</li>
+      </ul>
+
+    </article>
+</section>
+<footer>
+    <!-- Footer content with links to privacy policy, terms of use, etc. -->
+</footer>
+</body>
+</html>
