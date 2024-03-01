@@ -26,14 +26,16 @@ var previewWorker = new Worker('previewWorker.js');
 
 // Update the updatePreview function to account for the padding
 function updatePreview() {
+  var contentLength = editor.value.length;
+  // Adjust debounce timing based on content length
+  var debounceTime = contentLength > 10000 ? 3000 : 1000; // Longer debounce time for larger documents
+  debouncedAutosave = debounce(autosave, debounceTime);
+
   previewWorker.postMessage(editor.value);
   const paddingHeight = 30; 
   const currentScrollPos = editor.scrollTop;
   const maxScrollPos = editor.scrollHeight - editor.clientHeight - paddingHeight;
-
-  // Check if the user is at the bottom of the textarea
   if (currentScrollPos >= maxScrollPos) {
-    // Scroll to include the padding at the bottom
     editor.scrollTop = editor.scrollHeight - editor.clientHeight;
   }
 }
@@ -61,16 +63,20 @@ previewWorker.addEventListener('message', function(event) {
   });
 });
 
+
 // Debounce function to limit the frequency of autosave invocations
-function debounce(func, wait) {
+function debounce(func, wait, immediate) {
   var timeout;
   return function() {
     var context = this, args = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(function() {
+    var later = function() {
       timeout = null;
-      func.apply(context, args);
-    }, wait);
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
   };
 }
 
@@ -83,7 +89,7 @@ function autosave() {
   }
 }
 // Debounce the autosave function with a delay of 1000 milliseconds (1 second)
-var debouncedAutosave = debounce(autosave, 1000);
+var debouncedAutosave = debounce(autosave, 3000);
 
 // Function to load content from localStorage or readme.md
 function loadContent() {
