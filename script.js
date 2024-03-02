@@ -32,20 +32,38 @@ function updatePreview() {
   debouncedAutosave = debounce(autosave, debounceTime);
 
   previewWorker.postMessage(editor.value);
-  const paddingHeight = 30; 
-  const currentScrollPos = editor.scrollTop;
-  const maxScrollPos = editor.scrollHeight - editor.clientHeight - paddingHeight;
+  const paddingHeight = 30;
+  let clientHeight = editor.clientHeight; // Read once and store
+  let scrollHeight = editor.scrollHeight; // Reduce accessing this property
+  let currentScrollPos = editor.scrollTop; // Less frequent property accesses
+  let maxScrollPos = scrollHeight - clientHeight - paddingHeight;
   if (currentScrollPos >= maxScrollPos) {
-    editor.scrollTop = editor.scrollHeight - editor.clientHeight;
+    editor.scrollTop = scrollHeight - clientHeight;
   }
 }
 
 // Call the updated updatePreview function in the existing input event listener
+/*
 editor.addEventListener('input', function() {
   updatePreview();
   debouncedAutosave();
-  syncScrollEditor();
 });
+*/
+
+let queued = false;
+
+editor.addEventListener('input', () => {
+  if (!queued) {
+    queued = true;
+    requestIdleCallback(() => {
+      updatePreview(); // Ensure this function is optimized for performance.
+      debouncedAutosave(); // Debounce to reduce the frequency of execution.
+      queued = false;
+    }, {timeout: 500}); // The timeout option ensures it runs even under heavy load.
+  }
+});
+
+
 
 
 // get the message from the worker
@@ -55,10 +73,12 @@ previewWorker.addEventListener('message', function(event) {
   // Ensure scrolling happens after rendering
   requestAnimationFrame(function() {
     preview.scrollTop = scrollTop;
+    /*
     preview.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
     // After the highlighting, sync the scroll again
+    */
     syncScrollEditor();
   });
 });

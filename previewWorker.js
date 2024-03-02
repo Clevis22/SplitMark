@@ -23,7 +23,7 @@ var converter = new showdown.Converter({
 
 // Dynamically calculate debounce time based on document length
 function getDebounceTime(length) {
-    if (length <= 10000) return 2; // Base case for documents up to 10,000 characters
+    if (length <= 10000) return 0; // Base case for documents up to 10,000 characters
     if (length <= 20000) return 500; // Increase debounce time as document grows
     if (length <= 30000) return 700; // Further increase for longer documents
     if (length <= 40000) return 900;

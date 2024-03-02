@@ -181,63 +181,70 @@ function newLine(){
 
 // Main event listener for keyboard shortcuts
 document.addEventListener('keydown', function(event) {
-    if ((event.ctrlKey || event.metaKey) && !event.altKey) {
+    var editor = document.getElementById('editor');
+    // Handling tab key for inserting tabs in the editor
+    if (event.key === 'Tab') {
+        event.preventDefault(); // Prevent the tab key's default behavior
+        var start = editor.selectionStart;
+        var end = editor.selectionEnd;
+        editor.value = editor.value.substring(0, start) + '\t' + editor.value.substring(end);
+        editor.selectionStart = editor.selectionEnd = start + 1; // Move cursor
+    }
+    // Handling shortcuts with Ctrl or Cmd key
+    if (event.ctrlKey || event.metaKey) {
         switch (event.key.toLowerCase()) {
             case 'b':
-                event.preventDefault();
-                toggleBold();
+                event.preventDefault(); // Prevent default event (usually open bookmarks in browser)
+                toggleBold(); // Call function to toggle bold
                 break;
             case 'i':
-                event.preventDefault();
-                toggleItalics();
+                event.preventDefault(); // Prevent default event (usually open browser settings)
+                toggleItalics(); // Call function to toggle italics
                 break;
             case 's':
-                event.preventDefault();
-                toggleStrikethrough();
+                event.preventDefault(); // Prevent default event (usually save the webpage)
+                toggleStrikethrough(); // Call function to toggle strikethrough
                 break;
             case 'e':
-                event.preventDefault();
-                toggleEmoji();
+                event.preventDefault(); // Prevent default event
+                toggleEmoji(); // Call function to toggle emoji
                 break;
-            case 'enter':
+            case '=': // Handling Ctrl + '=' for increasing font size
+                event.preventDefault();
+                changeFontSize(2); // Increase font size
+                break;
+            case '-': // Handling Ctrl + '-' for decreasing font size
+                event.preventDefault();
+                changeFontSize(-2); // Decrease font size
+                break;
+            case 'enter': // Ctrl+Enter for toggling view mode
                 event.preventDefault();
                 toggleViewMode();
                 break;
-            case 'l':
+            case 'l': // Ctrl+L for a new line (custom feature not typically found in editors)
                 event.preventDefault();
                 newLine();
-            break;
-            case '=': // Ctrl + '=' is the actual result when pressing Ctrl + '+'
-                if (event.key === '=' || event.key === '+') {
-                    event.preventDefault();
-                    changeFontSize(2);
-                }
-                break;
-            case '-':
-                event.preventDefault();
-                changeFontSize(-2);
                 break;
         }
-    } else if (!event.ctrlKey && !event.metaKey && !event.altKey) {
+    } else {
+        // Handling non-Ctrl shortcuts such as '[' or '(', for surrounding text or cursor with brackets or parentheses
         switch (event.key) {
             case '[':
-                event.preventDefault();
-                insertSquareBrackets();
+                event.preventDefault(); // Prevent default event
+                insertSquareBrackets(); // Call function to insert square brackets
                 break;
             case '(':
-                event.preventDefault();
-                insertParentheses();
+                event.preventDefault(); // Prevent default event
+                insertParentheses(); // Call function to insert parentheses
                 break;
         }
     }
-    // Update preview and autosave after applying the formatting
+    // Update preview and autosave after applying shortcut actions
     updatePreview();
     autosave();
-});
-
-window.addEventListener('keydown', function(event) {
+    // Handling of quick word count and reading time display with Ctrl+Shift+C
     if (event.ctrlKey && event.shiftKey && event.code === 'KeyC') {
         showWordCountAndReadingTime();
-        event.preventDefault(); // Prevents any default action associated with the Control+Shift+C shortcut
+        event.preventDefault(); // To prevent default action of Ctrl+Shift+C if any
     }
 });
