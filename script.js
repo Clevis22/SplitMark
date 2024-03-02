@@ -23,15 +23,39 @@ converter = new showdown.Converter({
 var editor = document.getElementById('editor');
 var preview = document.getElementById('preview');
 var previewWorker = new Worker('previewWorker.js');
+var debouncedUpdatePreview;
 
 // Update the updatePreview function to account for the padding
 function updatePreview() {
   var contentLength = editor.value.length;
-  // Adjust debounce timing based on content length
-  var debounceTime = contentLength > 10000 ? 3000 : 1000; // Longer debounce time for larger documents
-  debouncedAutosave = debounce(autosave, debounceTime);
-
-  previewWorker.postMessage(editor.value);
+  var debounceTime;
+  if(contentLength > 50000) {
+    debounceTime = 15000; // 7 seconds for content over 50000 characters
+  }
+  else if(contentLength > 40000){
+      debounceTime = 11000;
+  }
+  else if(contentLength > 35000){
+      debounceTime = 10000;
+  }
+  else if(contentLength > 30000){
+    debounceTime = 9000;
+  } 
+  else if(contentLength > 25000) {
+      debounceTime = 7000; // 5 seconds for content between 20001 and 50000 characters
+    } 
+  else if(contentLength > 20000) {
+    debounceTime = 3000; // 5 seconds for content between 20001 and 50000 characters
+  } else {
+    debounceTime = 0; // 1 second for content up to 20000 characters
+  }
+    // Split content for large documents
+    const CHUNK_SIZE = 10000; // Size may need adjustment based on performance observations
+    const text = editor.value;
+    const textChunks = createTextChunks(text, CHUNK_SIZE);
+    // Send chunks to worker
+    previewWorker.postMessage(textChunks);
+    autosave();
   const paddingHeight = 30;
   let clientHeight = editor.clientHeight; // Read once and store
   let scrollHeight = editor.scrollHeight; // Reduce accessing this property
@@ -40,6 +64,51 @@ function updatePreview() {
   if (currentScrollPos >= maxScrollPos) {
     editor.scrollTop = scrollHeight - clientHeight;
   }
+}
+
+
+function createTextChunks(text, chunkSize) {
+    const chunks = [];
+    let currentChunkStart = 0;
+
+    while (currentChunkStart < text.length) {
+        let currentChunkEnd = Math.min(currentChunkStart + chunkSize, text.length);
+        let chunk = text.substring(currentChunkStart, currentChunkEnd);
+
+        // Detecting if we're potentially splitting inside a code block
+        const codeBlockStart = chunk.lastIndexOf('```');
+
+        if (codeBlockStart !== -1) {
+            // Ensure we're not ending the chunk in the middle of a code block
+            const codeBlockEnd = chunk.indexOf('```', codeBlockStart + 3);
+
+            if (codeBlockEnd === -1 && currentChunkEnd < text.length) { // We are in the middle of a code block
+                const nextCodeBlockEnd = text.indexOf('```', currentChunkEnd) + 3; // Find the end of the code block
+                if (nextCodeBlockEnd > currentChunkEnd && nextCodeBlockEnd <= text.length) {
+                    currentChunkEnd = nextCodeBlockEnd; // Extend chunk to include the entire code block
+                    chunk = text.substring(currentChunkStart, currentChunkEnd);
+                }
+            }
+        }
+
+        // Check for other Markdown elements and adjust the chunk accordingly
+        const markdownElements = ['**', '__', '*', '_', '[', ']', '(', ')', '>'];
+        for (const element of markdownElements) {
+            if (chunk.includes(element)) {
+                const elementStart = chunk.lastIndexOf(element);
+                const elementEnd = chunk.indexOf(element, elementStart + element.length);
+                if (elementEnd !== -1 && elementEnd < currentChunkEnd) {
+                    currentChunkEnd = elementEnd + element.length; // Extend chunk to include the entire Markdown element
+                    chunk = text.substring(currentChunkStart, currentChunkEnd);
+                }
+            }
+        }
+
+        chunks.push(chunk);
+        currentChunkStart = currentChunkEnd;
+    }
+
+    return chunks;
 }
 
 // Call the updated updatePreview function in the existing input event listener
@@ -58,12 +127,11 @@ editor.addEventListener('input', () => {
     requestIdleCallback(() => {
       updatePreview(); // Ensure this function is optimized for performance.
       debouncedAutosave(); // Debounce to reduce the frequency of execution.
+      
       queued = false;
     }, {timeout: 500}); // The timeout option ensures it runs even under heavy load.
   }
 });
-
-
 
 
 // get the message from the worker

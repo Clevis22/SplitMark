@@ -58,5 +58,11 @@ const processMessage = debounce((data) => {
 
 // Listener for messages from the main thread
 self.addEventListener('message', function(event) {
-    processMessage(event.data);
+    // Assume event.data is now an array of text chunks
+    const textChunks = event.data;
+    let combinedHtml = '';
+    textChunks.forEach(chunk => {
+        combinedHtml += converter.makeHtml(chunk) + '\n';
+    });
+    self.postMessage(combinedHtml);
 });
