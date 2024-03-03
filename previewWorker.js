@@ -62,7 +62,7 @@ const processMessage = debounce((data) => {
   data.forEach(chunk => {
       chunks.push(converter.makeHtml(chunk));
   });
-  let combinedHtml = chunks.join('\n');
+  let combinedHtml = chunks.join('');
 
     self.postMessage(combinedHtml);
 });

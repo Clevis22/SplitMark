@@ -23,7 +23,7 @@ converter = new showdown.Converter({
 var editor = document.getElementById('editor');
 var preview = document.getElementById('preview');
 var previewWorker = new Worker('previewWorker.js');
-var debouncedUpdatePreview;
+const debouncedUpdatePreview = debounceTwo(updatePreview, 500);
 
 // Update the updatePreview function to account for the padding
 function updatePreview() {
@@ -68,48 +68,68 @@ function updatePreview() {
 
 
 function createTextChunks(text, chunkSize) {
-    const chunks = [];
-    let currentChunkStart = 0;
+  const chunks = [];
+  let currentChunkStart = 0;
 
-    while (currentChunkStart < text.length) {
-        let currentChunkEnd = Math.min(currentChunkStart + chunkSize, text.length);
-        let chunk = text.substring(currentChunkStart, currentChunkEnd);
+  while (currentChunkStart < text.length) {
+    let currentChunkEnd = Math.min(currentChunkStart + chunkSize, text.length);
+    let chunk = text.substring(currentChunkStart, currentChunkEnd);
 
-        // Detecting if we're potentially splitting inside a code block
-        const codeBlockStart = chunk.lastIndexOf('```');
+    // 1. Prioritize checking for complete Markdown elements first:
+    const markdownElementsToCheck = [
+      ['`', '`'], // Code blocks
+      ['**', '**'], // Bold
+      ['__', '__'], // More bold
+      ['*', '*'], // Italic
+      ['_', '_'], // More italic
+      ['[', ']'], // Links
+      ['(', ')'], // Inline code or images
+      ['>', ''], // Blockquotes
+    ];
 
-        if (codeBlockStart !== -1) {
-            // Ensure we're not ending the chunk in the middle of a code block
-            const codeBlockEnd = chunk.indexOf('```', codeBlockStart + 3);
+    for (const [startMarker, endMarker] of markdownElementsToCheck) {
+      // Find potential start and end positions of the element within the chunk
+      const elementStart = chunk.lastIndexOf(startMarker);
+      const elementEnd = chunk.indexOf(endMarker, elementStart + startMarker.length);
 
-            if (codeBlockEnd === -1 && currentChunkEnd < text.length) { // We are in the middle of a code block
-                const nextCodeBlockEnd = text.indexOf('```', currentChunkEnd) + 3; // Find the end of the code block
-                if (nextCodeBlockEnd > currentChunkEnd && nextCodeBlockEnd <= text.length) {
-                    currentChunkEnd = nextCodeBlockEnd; // Extend chunk to include the entire code block
-                    chunk = text.substring(currentChunkStart, currentChunkEnd);
-                }
-            }
+      if (elementStart !== -1 && elementEnd !== -1 && elementEnd > elementStart) {
+        // Element is complete within the chunk, ensure it stays together
+        currentChunkEnd = Math.max(currentChunkEnd, elementEnd + endMarker.length);
+        chunk = text.substring(currentChunkStart, currentChunkEnd);
+      } else if (
+        elementStart !== -1 && // Element starts within the chunk
+        elementEnd === -1 && // But doesn't end within the chunk
+        currentChunkEnd < text.length // There's more text to check
+      ) {
+        // Look ahead to find the ending marker
+        const nextElementEnd = text.indexOf(endMarker, currentChunkEnd);
+        if (nextElementEnd !== -1) {
+          currentChunkEnd = nextElementEnd + endMarker.length; // Extend chunk to include the entire element
+          chunk = text.substring(currentChunkStart, currentChunkEnd);
         }
-
-        // Check for other Markdown elements and adjust the chunk accordingly
-        const markdownElements = ['**', '__', '*', '_', '[', ']', '(', ')', '>'];
-        for (const element of markdownElements) {
-            if (chunk.includes(element)) {
-                const elementStart = chunk.lastIndexOf(element);
-                const elementEnd = chunk.indexOf(element, elementStart + element.length);
-                if (elementEnd !== -1 && elementEnd < currentChunkEnd) {
-                    currentChunkEnd = elementEnd + element.length; // Extend chunk to include the entire Markdown element
-                    chunk = text.substring(currentChunkStart, currentChunkEnd);
-                }
-            }
-        }
-
-        chunks.push(chunk);
-        currentChunkStart = currentChunkEnd;
+      }
     }
 
-    return chunks;
+    // 2. Now check for paragraphs and blockquotes:
+    if (chunk.endsWith('\n')) {
+      // End chunk at a newline to preserve paragraphs
+      chunk = chunk.slice(0, -1);
+    } else if (chunk.endsWith('> ')) {
+      // End chunk after a blockquote marker to keep it intact
+      const nextBlockquoteEnd = text.substring(currentChunkEnd).search(/(?:\n|$)/);
+      if (nextBlockquoteEnd !== -1) {
+        currentChunkEnd += nextBlockquoteEnd;
+        chunk = text.substring(currentChunkStart, currentChunkEnd);
+      }
+    }
+
+    chunks.push(chunk);
+    currentChunkStart = currentChunkEnd;
+  }
+
+  return chunks;
 }
+
 
 // Call the updated updatePreview function in the existing input event listener
 /*
@@ -125,7 +145,7 @@ editor.addEventListener('input', () => {
   if (!queued) {
     queued = true;
     requestIdleCallback(() => {
-      updatePreview(); // Ensure this function is optimized for performance.
+      debouncedUpdatePreview();
       debouncedAutosave(); // Debounce to reduce the frequency of execution.
       
       queued = false;
@@ -167,6 +187,17 @@ function debounce(func, wait, immediate) {
     if (callNow) func.apply(context, args);
   };
 }
+
+function debounceTwo(func, wait) {
+  let timeout;
+  return function() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(this, arguments);
+    }, wait);
+  };
+}
+
 
 // Function to automatically save the content to localStorage
 function autosave() {
