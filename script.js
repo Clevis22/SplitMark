@@ -157,7 +157,9 @@ editor.addEventListener('input', () => {
 // get the message from the worker
 previewWorker.addEventListener('message', function(event) {
   var scrollTop = preview.scrollTop;
-  preview.innerHTML = event.data;
+  var cleanHTML = DOMPurify.sanitize(event.data); // Sanitize received HTML
+  preview.innerHTML = cleanHTML;
+  //preview.innerHTML = event.data;
   // Ensure scrolling happens after rendering
   requestAnimationFrame(function() {
     preview.scrollTop = scrollTop;
