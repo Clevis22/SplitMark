@@ -57,9 +57,9 @@ Enter your GitHub Flaverd Markdown on the left and see the live preview of the r
 
 ## To Do
 
-* Improve mobile styling
-
-* Add more export options
+* Improve speed on Chromium when editing large documents.
+  
+* Re-enable syntax highlighting
 
 ## Dependencies
 * [split.js](https://github.com/splitrb/split.js?files=1)

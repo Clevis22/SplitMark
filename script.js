@@ -55,7 +55,7 @@ function updatePreview() {
     const textChunks = createTextChunks(text, CHUNK_SIZE);
     // Send chunks to worker
     previewWorker.postMessage(textChunks);
-    autosave();
+    //autosave();
   const paddingHeight = 30;
   let clientHeight = editor.clientHeight; // Read once and store
   let scrollHeight = editor.scrollHeight; // Reduce accessing this property
@@ -131,7 +131,7 @@ editor.addEventListener('input', () => {
       queued = false;
     }, {timeout: 500}); // The timeout option ensures it runs even under heavy load.
   }
-});
+}); 
 
 
 // get the message from the worker
